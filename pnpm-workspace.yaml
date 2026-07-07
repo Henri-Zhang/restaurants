@@ -1,4 +1,12 @@
+packages:
+  - "src/demos/*"
+
+verifyDepsBeforeRun: false
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
 allowBuilds:
   esbuild: set this to true or false
   sharp: set this to true or false
-verifyDepsBeforeRun: false

@@ -16,3 +16,7 @@ yarn-error.log*
 .env.production
 # macOS
 .DS_Store
+# demo sub-projects (each is a standalone Astro project under src/demos/*)
+src/demos/*/node_modules/
+src/demos/*/dist/
+src/demos/*/.astro/

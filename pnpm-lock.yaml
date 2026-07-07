@@ -12,6 +12,42 @@ importers:
         specifier: ^5.13.0
         version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
 
+  src/demos/cantonese-kitchen:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
+  src/demos/green-bowl:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
+  src/demos/peking-duck-house:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
+  src/demos/private-dining:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
+  src/demos/sichuan-hotpot:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
+  src/demos/skewer-alley:
+    dependencies:
+      astro:
+        specifier: ^5.13.0
+        version: 5.18.2(rollup@4.62.2)(typescript@5.0.2)
+
 packages:
 
   '@astrojs/compiler@2.13.1':

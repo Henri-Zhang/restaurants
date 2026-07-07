@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "sichuan-hotpot",
+    "name": "Spice Pit Sichuan Hotpot",
+    "tag": "Hotpot",
+    "description": "Bold, numbing Sichuan broth, table-by-table bubbling pots, and a late-night energy that keeps the room full.",
+    "meta": ["Menu", "Private rooms", "Reservations"],
+    "gradient": "linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%)",
+    "emoji": "🍲"
+  },
+  {
+    "slug": "cantonese-kitchen",
+    "name": "Lotus Cantonese Kitchen",
+    "tag": "Cantonese",
+    "description": "Refined dim sum, wok-fired classics, and a calm room built for long family lunches and business dinners.",
+    "meta": ["Signature dishes", "Our story", "Book a table"],
+    "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "emoji": "🥢"
+  },
+  {
+    "slug": "peking-duck-house",
+    "name": "Imperial Peking Duck House",
+    "tag": "Roastery",
+    "description": "A single dish done obsessively well — wood-fired duck carved tableside, built for celebration dinners.",
+    "meta": ["Signature", "Carving show", "Banquets"],
+    "gradient": "linear-gradient(135deg, #f12711 0%, #f5af19 100%)",
+    "emoji": "🦆"
+  },
+  {
+    "slug": "skewer-alley",
+    "name": "Skewer Alley Night Market",
+    "tag": "Street BBQ",
+    "description": "Pick-your-own skewers, cold beer on tap, and a loud, young, neon-lit room that owns the night.",
+    "meta": ["Pick & grill", "Drinks", "Late night"],
+    "gradient": "linear-gradient(135deg, #fc466b 0%, #3f5efb 100%)",
+    "emoji": "🍢"
+  },
+  {
+    "slug": "private-dining",
+    "name": "Hushed Private Dining",
+    "tag": "Tasting menu",
+    "description": "Reservation-only, multi-course tasting menu from a single chef — intimate, quiet, and worth the wait.",
+    "meta": ["Tasting menu", "The chef", "Reservation only"],
+    "gradient": "linear-gradient(135deg, #0f2027 0%, #2c5364 100%)",
+    "emoji": "🍵"
+  },
+  {
+    "slug": "green-bowl",
+    "name": "Green Bowl Healthy Eatery",
+    "tag": "Healthy",
+    "description": "Build-your-own salads, grain bowls, and clean lunches for the office crowd — dine-in, pickup, or delivery.",
+    "meta": ["Weekly plans", "Delivery", "Calorie-tagged"],
+    "gradient": "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    "emoji": "🥗"
+  }
+]

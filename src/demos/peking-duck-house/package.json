@@ -1,13 +1,11 @@
 {
-  "name": "restaurants",
+  "name": "demo-peking-duck-house",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "dev:all": "node scripts/dev-all.mjs",
-    "build": "astro build && node scripts/build-demos.mjs",
-    "scaffold": "node scripts/scaffold-demo.mjs",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
