@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import menu from "../data/menu.json";
 
 const categories = menu.categories;
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Menu — Green Bowl">
@@ -61,7 +62,7 @@ const categories = menu.categories;
               <p class="menu-desc">{item.desc}</p>
               <div class="menu-card-bottom">
                 <span class="cal">{item.calories} cal</span>
-                <a href="#order" class="add-btn">+ Add</a>
+                <a href={`${base}#order`} class="add-btn">+ Add</a>
               </div>
             </article>
           ))}
@@ -80,7 +81,7 @@ const categories = menu.categories;
           Pick a base, add your proteins and toppings, drizzle a dressing — over
           100,000 combinations. Your perfect bowl is a few taps away.
         </p>
-        <a href="#order" class="btn btn--light">Start building →</a>
+        <a href={`${base}#order`} class="btn btn--light">Start building →</a>
       </div>
       <div class="build-visual">
         <div class="build-circle">🥗</div>

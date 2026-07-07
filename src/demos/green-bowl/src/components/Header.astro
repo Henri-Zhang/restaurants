@@ -1,26 +1,30 @@
 ---
+const base = import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
+const relPath = pathname.startsWith(base)
+  ? "/" + pathname.slice(base.length)
+  : pathname;
 const isActive = (path: string) =>
   path === "/"
-    ? pathname === "/"
-    : pathname.startsWith(path);
+    ? relPath === "/"
+    : relPath.startsWith(path);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="logo" aria-label="Green Bowl home">
+    <a href={base} class="logo" aria-label="Green Bowl home">
       <span class="logo-leaf">🌿</span>
       <span class="logo-text">Green&nbsp;Bowl</span>
     </a>
 
     <nav class="nav-desktop">
-      <a href="/" class:list={["nav-link", { active: isActive("/") }]}>Home</a>
-      <a href="/menu" class:list={["nav-link", { active: isActive("/menu") }]}>Menu</a>
-      <a href="/#story" class="nav-link">Our Story</a>
-      <a href="/#locations" class="nav-link">Locations</a>
+      <a href={base} class:list={["nav-link", { active: isActive("/") }]}>Home</a>
+      <a href={`${base}menu/`} class:list={["nav-link", { active: isActive("/menu") }]}>Menu</a>
+      <a href={`${base}#story`} class="nav-link">Our Story</a>
+      <a href={`${base}#locations`} class="nav-link">Locations</a>
     </nav>
 
-    <a href="/menu" class="btn btn--dark order-btn">Order Now</a>
+    <a href={`${base}menu/`} class="btn btn--dark order-btn">Order Now</a>
 
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -28,11 +32,11 @@ const isActive = (path: string) =>
   </div>
 
   <nav class="nav-mobile">
-    <a href="/">Home</a>
-    <a href="/menu">Menu</a>
-    <a href="/#story">Our Story</a>
-    <a href="/#locations">Locations</a>
-    <a href="/menu" class="btn btn--dark" style="margin-top:12px;">Order Now</a>
+    <a href={base}>Home</a>
+    <a href={`${base}menu/`}>Menu</a>
+    <a href={`${base}#story`}>Our Story</a>
+    <a href={`${base}#locations`}>Locations</a>
+    <a href={`${base}menu/`} class="btn btn--dark" style="margin-top:12px;">Order Now</a>
   </nav>
 </header>
 

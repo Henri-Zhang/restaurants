@@ -8,6 +8,7 @@ const {
   title = "Green Bowl — Healthy Salads & Grain Bowls",
   description = "Fresh, build-your-own salads, grain bowls, and warm plates made in-house from scratch. Whole produce delivered every morning.",
 } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -17,7 +18,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <title>{title}</title>
     <slot name="head" />
   </head>

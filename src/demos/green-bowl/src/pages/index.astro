@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+const base = import.meta.env.BASE_URL;
+
 const highlights = [
   {
     name: "Super Green Goddess",
@@ -43,8 +45,8 @@ const highlights = [
         loves you back.
       </p>
       <div class="hero-cta">
-        <a href="/menu" class="btn btn--dark">Order Now</a>
-        <a href="/menu" class="btn btn--outline">See the Menu</a>
+        <a href={`${base}menu/`} class="btn btn--dark">Order Now</a>
+        <a href={`${base}menu/`} class="btn btn--outline">See the Menu</a>
       </div>
     </div>
     <div class="hero-scroll">↓</div>
@@ -89,7 +91,7 @@ const highlights = [
           bread. Our produce arrives at 6am and we prep it by hand so that by
           the time you walk in at noon, everything is fresh and ready.
         </p>
-        <a href="/menu" class="btn btn--outline" style="margin-top: 8px;">
+        <a href={`${base}menu/`} class="btn btn--outline" style="margin-top: 8px;">
           Taste the difference
         </a>
       </div>
@@ -114,7 +116,7 @@ const highlights = [
       </div>
       <div class="highlights-grid">
         {highlights.map((item) => (
-          <a href="/menu" class="highlight-card">
+          <a href={`${base}menu/`} class="highlight-card">
             <div class="highlight-img" style={`background:${item.gradient}`}>
               <span class="highlight-emoji">🥗</span>
             </div>
@@ -130,7 +132,7 @@ const highlights = [
         ))}
       </div>
       <div class="highlights-cta">
-        <a href="/menu" class="btn btn--dark">See the full menu →</a>
+        <a href={`${base}menu/`} class="btn btn--dark">See the full menu →</a>
       </div>
     </div>
   </section>
@@ -197,7 +199,7 @@ const highlights = [
     <div class="container cta-inner">
       <h2>Ready to eat well?</h2>
       <p>Order ahead and skip the line — your fresh bowl is waiting.</p>
-      <a href="/menu" class="btn btn--light">Order Now →</a>
+      <a href={`${base}menu/`} class="btn btn--light">Order Now →</a>
     </div>
   </section>
 
