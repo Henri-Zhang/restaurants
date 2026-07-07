@@ -1,46 +1,545 @@
 ---
-// Green Bowl Healthy Eatery — standalone demo (placeholder)
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const highlights = [
+  {
+    name: "Super Green Goddess",
+    desc: "Avocado, roasted broccoli, and our signature green goddess dressing.",
+    price: "$13.50",
+    gradient: "linear-gradient(135deg, #2d7a4f, #a8d5b5)",
+  },
+  {
+    name: "Harvest Bowl",
+    desc: "Wild rice, roasted sweet potato, apple, and toasted almonds.",
+    price: "$14.25",
+    gradient: "linear-gradient(135deg, #c9783a, #e8b87a)",
+  },
+  {
+    name: "Miso Salmon Bowl",
+    desc: "Miso-glazed salmon, edamame, and ginger-miso dressing.",
+    price: "$16.95",
+    gradient: "linear-gradient(135deg, #1a4d3a, #4a9d7f)",
+  },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Green Bowl Healthy Eatery</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-      .wrap { text-align: center; padding: 40px; }
-      .emoji { font-size: 88px; }
-      h1 { margin: 16px 0 8px; font-size: 40px; }
-      p { margin: 0; opacity: 0.85; font-size: 18px; }
-      .back {
-        display: inline-block;
-        margin-top: 28px;
-        padding: 10px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 999px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 14px;
-      }
-      .back:hover { background: rgba(255, 255, 255, 0.15); }
-    </style>
-  </head>
-  <body style="background:linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
-    <div class="wrap">
-      <div class="emoji">🥗</div>
-      <h1>Green Bowl Healthy Eatery</h1>
-      <p>This demo is a standalone Astro project. Edit the files here, then copy this folder out to deliver.</p>
-      <a class="back" href="/">← Back to gallery</a>
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <p class="eyebrow hero-eyebrow">Fresh · Seasonal · Made From Scratch</p>
+      <h1>
+        Eat well.<br />
+        Feel better.
+      </h1>
+      <p class="hero-sub">
+        Salads, grain bowls, and warm plates built from whole produce delivered
+        every morning. No shortcuts, no fake ingredients — just real food that
+        loves you back.
+      </p>
+      <div class="hero-cta">
+        <a href="/menu" class="btn btn--dark">Order Now</a>
+        <a href="/menu" class="btn btn--outline">See the Menu</a>
+      </div>
     </div>
-  </body>
-</html>
+    <div class="hero-scroll">↓</div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Whole Produce</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">32</span>
+        <span class="stat-label">Local Farms</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6am</span>
+        <span class="stat-label">Daily Delivery</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0</span>
+        <span class="stat-label">Artificial Additives</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section story" id="story">
+    <div class="container story-grid">
+      <div class="story-text">
+        <p class="eyebrow">Our Story</p>
+        <h2>Real food, sourced from people we trust.</h2>
+        <p>
+          Green Bowl started in 2019 with a simple idea: a lunch spot where
+          everything is made from scratch, the ingredients come from farmers we
+          actually know, and the menu changes with the seasons — not the
+          trends.
+        </p>
+        <p>
+          We roast our own vegetables, mix our own dressings, and bake our own
+          bread. Our produce arrives at 6am and we prep it by hand so that by
+          the time you walk in at noon, everything is fresh and ready.
+        </p>
+        <a href="/menu" class="btn btn--outline" style="margin-top: 8px;">
+          Taste the difference
+        </a>
+      </div>
+      <div class="story-visual">
+        <div class="story-circle story-circle--1"></div>
+        <div class="story-circle story-circle--2"></div>
+        <div class="story-circle story-circle--3"></div>
+        <div class="story-badge">
+          <span class="badge-emoji">🥬</span>
+          <span class="badge-text">Made<br />from<br />scratch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu highlights -->
+  <section class="section highlights" id="order">
+    <div class="container">
+      <div class="highlights-head">
+        <p class="eyebrow">This Week's Favorites</p>
+        <h2>Loved by the neighborhood.</h2>
+      </div>
+      <div class="highlights-grid">
+        {highlights.map((item) => (
+          <a href="/menu" class="highlight-card">
+            <div class="highlight-img" style={`background:${item.gradient}`}>
+              <span class="highlight-emoji">🥗</span>
+            </div>
+            <div class="highlight-body">
+              <h3>{item.name}</h3>
+              <p>{item.desc}</p>
+              <div class="highlight-foot">
+                <span class="highlight-price">{item.price}</span>
+                <span class="highlight-link">View →</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="highlights-cta">
+        <a href="/menu" class="btn btn--dark">See the full menu →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section how">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;">How It Works</p>
+      <h2 style="text-align:center; margin-bottom: 48px;">
+        Lunch made effortless.
+      </h2>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-icon">📲</div>
+          <h3>1. Pick your bowl</h3>
+          <p>Browse the seasonal menu and build your perfect bowl or salad.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-icon">🥡</div>
+          <h3>2. We prep it fresh</h3>
+          <p>Your order is assembled by hand the moment you place it.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-icon">🏃</div>
+          <h3>3. Pickup or delivery</h3>
+          <p>Grab it in-store or have it delivered to your desk in 30 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section class="section locations" id="locations">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center;">Find Us</p>
+      <h2 style="text-align:center; margin-bottom: 16px;">
+        Come say hello.
+      </h2>
+      <p style="text-align:center; color: var(--ink-muted); margin-bottom: 48px;">
+        Three locations across the Bay Area, with more on the way.
+      </p>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <h3>Market Street</h3>
+          <p>128 Market Street<br />San Francisco, CA 94103</p>
+          <span class="loc-hours">Mon–Sat · 10:30am–9pm</span>
+        </div>
+        <div class="loc-card">
+          <h3>Mission Bay</h3>
+          <p>550 Terry A Francois Blvd<br />San Francisco, CA 94158</p>
+          <span class="loc-hours">Daily · 11am–8pm</span>
+        </div>
+        <div class="loc-card">
+          <h3>Castro</h3>
+          <p>450 Castro Street<br />San Francisco, CA 94114</p>
+          <span class="loc-hours">Mon–Sat · 10:30am–9pm</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA banner -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <h2>Ready to eat well?</h2>
+      <p>Order ahead and skip the line — your fresh bowl is waiting.</p>
+      <a href="/menu" class="btn btn--light">Order Now →</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--green-deep);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a4d3a 0%, #2d7a4f 60%, #38a065 100%);
+  }
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(168, 213, 181, 0.15), transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(232, 120, 58, 0.08), transparent 50%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    max-width: 720px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .hero-eyebrow {
+    color: var(--green-soft);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 0.98;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero .btn--outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .hero .btn--outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* Stats */
+  .stats {
+    background: var(--cream);
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .stat-num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--green-deep);
+    line-height: 1;
+  }
+  .stat-label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 8px;
+  }
+
+  /* Story */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .story-text h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin: 12px 0 20px;
+  }
+  .story-text p {
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+  }
+  .story-visual {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .story-circle {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .story-circle--1 {
+    width: 280px; height: 280px;
+    background: var(--green-soft);
+    top: 20px; right: 20px;
+    opacity: 0.6;
+  }
+  .story-circle--2 {
+    width: 200px; height: 200px;
+    background: var(--accent);
+    opacity: 0.25;
+    bottom: 40px; left: 10px;
+  }
+  .story-circle--3 {
+    width: 120px; height: 120px;
+    background: var(--cream);
+    border: 3px solid var(--green-mid);
+    top: 60px; left: 40px;
+  }
+  .story-badge {
+    position: relative;
+    z-index: 1;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: var(--green-deep);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 60px rgba(26, 77, 58, 0.3);
+  }
+  .badge-emoji { font-size: 2rem; }
+  .badge-text {
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-align: center;
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+
+  /* Highlights */
+  .highlights {
+    background: var(--cream);
+  }
+  .highlights-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .highlights-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-top: 12px;
+  }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .highlight-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .highlight-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+  .highlight-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .highlight-emoji {
+    font-size: 4rem;
+  }
+  .highlight-body {
+    padding: 24px;
+  }
+  .highlight-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  .highlight-body p {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+  }
+  .highlight-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .highlight-price {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--green-deep);
+  }
+  .highlight-link {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--green-mid);
+  }
+  .highlights-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  /* How */
+  .how {
+    background: var(--warm-white);
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .how-step {
+    text-align: center;
+  }
+  .how-icon {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+  }
+  .how-step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  .how-step p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Locations */
+  .locations {
+    background: var(--cream);
+  }
+  .loc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .loc-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border);
+  }
+  .loc-card h3 {
+    font-size: 1.15rem;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+  }
+  .loc-card p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .loc-hours {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--green-mid);
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--green-deep);
+    padding: 72px 0;
+    text-align: center;
+    color: #fff;
+  }
+  .cta-banner h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 12px;
+  }
+  .cta-banner p {
+    opacity: 0.85;
+    margin-bottom: 28px;
+    font-size: 1.05rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .story-visual {
+      height: 320px;
+    }
+    .highlights-grid {
+      grid-template-columns: 1fr;
+    }
+    .how-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .loc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

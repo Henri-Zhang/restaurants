@@ -1,0 +1,311 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import menu from "../data/menu.json";
+
+const categories = menu.categories;
+---
+
+<Layout title="Menu — Green Bowl">
+  <Header />
+
+  <!-- Menu hero -->
+  <section class="menu-hero">
+    <div class="container">
+      <p class="eyebrow">Seasonal Menu</p>
+      <h1>We source the best ingredients<br />from farmers we know.</h1>
+      <p class="menu-hero-sub">
+        Every item is prepared fresh from scratch each day. Calories and dietary
+        tags are listed for each dish — because you deserve to know what's in
+        your bowl.
+      </p>
+    </div>
+  </section>
+
+  <!-- Category nav -->
+  <div class="cat-nav-wrap">
+    <div class="container">
+      <nav class="cat-nav">
+        {categories.map((cat) => (
+          <a href={`#${cat.name.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
+            {cat.name}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+
+  <!-- Menu sections -->
+  {categories.map((cat, idx) => (
+    <section class:list={["section", "menu-section", { "menu-section--alt": idx % 2 === 1 }]} id={cat.name.toLowerCase().replace(/[^a-z]+/g, "-")}>
+      <div class="container">
+        <div class="section-head">
+          <h2>{cat.name}</h2>
+          <span class="item-count">{cat.items.length} items</span>
+        </div>
+        <div class="menu-grid">
+          {cat.items.map((item) => (
+            <article class="menu-card">
+              <div class="menu-card-top">
+                <div>
+                  <h3>{item.name}</h3>
+                  <div class="menu-tags">
+                    {item.tags.map((tag) => (
+                      <span class:list={["tag", `tag--${tag}`]}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+                <span class="menu-price">{item.price}</span>
+              </div>
+              <p class="menu-desc">{item.desc}</p>
+              <div class="menu-card-bottom">
+                <span class="cal">{item.calories} cal</span>
+                <a href="#order" class="add-btn">+ Add</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Build your own CTA -->
+  <section class="build-cta">
+    <div class="container build-inner">
+      <div>
+        <p class="eyebrow" style="color: var(--green-soft);">Make It Yours</p>
+        <h2>Build your own bowl.</h2>
+        <p>
+          Pick a base, add your proteins and toppings, drizzle a dressing — over
+          100,000 combinations. Your perfect bowl is a few taps away.
+        </p>
+        <a href="#order" class="btn btn--light">Start building →</a>
+      </div>
+      <div class="build-visual">
+        <div class="build-circle">🥗</div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Menu hero */
+  .menu-hero {
+    background: var(--green-deep);
+    color: #fff;
+    padding: 80px 0 56px;
+    text-align: center;
+  }
+  .menu-hero .eyebrow {
+    color: var(--green-soft);
+    margin-bottom: 16px;
+  }
+  .menu-hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .menu-hero-sub {
+    max-width: 580px;
+    margin: 0 auto;
+    opacity: 0.85;
+    font-size: 1.05rem;
+  }
+
+  /* Category nav */
+  .cat-nav-wrap {
+    position: sticky;
+    top: 72px;
+    z-index: 50;
+    background: rgba(253, 252, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-nav {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    padding: 16px 0;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .cat-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .cat-nav a {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    transition: color 0.15s ease;
+  }
+  .cat-nav a:hover {
+    color: var(--green-deep);
+  }
+
+  /* Section head */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .item-count {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  /* Menu grid */
+  .menu-section--alt {
+    background: var(--cream);
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .menu-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .menu-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+  .menu-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .menu-card-top h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+  .menu-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--green-soft);
+    color: var(--green-deep);
+  }
+  .tag--vegan { background: #c4e8d0; color: #1a4d3a; }
+  .tag--vegetarian { background: #d4e8c4; color: #2d5a1a; }
+  .tag--gluten-free { background: #fdf0d4; color: #8a6d1a; }
+  .tag--high-protein { background: #f4d4c4; color: #8a3a1a; }
+
+  .menu-price {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--green-deep);
+    white-space: nowrap;
+  }
+  .menu-desc {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .menu-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .cal {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+  .add-btn {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--green-deep);
+    background: var(--green-soft);
+    padding: 6px 16px;
+    border-radius: 999px;
+    transition: background 0.15s ease;
+  }
+  .add-btn:hover {
+    background: var(--green-mid);
+    color: #fff;
+  }
+
+  /* Build your own */
+  .build-cta {
+    background: var(--green-deep);
+    color: #fff;
+    padding: 72px 0;
+  }
+  .build-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .build-cta h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin: 12px 0 16px;
+  }
+  .build-cta p {
+    opacity: 0.85;
+    margin-bottom: 24px;
+    max-width: 480px;
+  }
+  .build-visual {
+    display: flex;
+    justify-content: center;
+  }
+  .build-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    .menu-grid {
+      grid-template-columns: 1fr;
+    }
+    .build-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .build-cta .eyebrow {
+      display: block;
+    }
+    .build-cta p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>

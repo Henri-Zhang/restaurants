@@ -1,0 +1,140 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Green Bowl — Healthy Salads & Grain Bowls",
+  description = "Fresh, build-your-own salads, grain bowls, and warm plates made in-house from scratch. Whole produce delivered every morning.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --green-deep: #1a4d3a;
+    --green-mid: #2d7a4f;
+    --green-soft: #a8d5b5;
+    --cream: #f7f5ef;
+    --warm-white: #fdfcf7;
+    --ink: #1c1c1c;
+    --ink-muted: #555;
+    --accent: #e8783a;
+    --border: #e2dfd4;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+      Arial, sans-serif;
+    color: var(--ink);
+    background: var(--warm-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn--dark {
+    background: var(--green-deep);
+    color: #fff;
+  }
+  .btn--dark:hover {
+    background: #143a2d;
+  }
+  .btn--light {
+    background: #fff;
+    color: var(--green-deep);
+  }
+  .btn--light:hover {
+    background: var(--cream);
+  }
+  .btn--outline {
+    background: transparent;
+    color: var(--green-deep);
+    border: 1.5px solid var(--green-deep);
+  }
+  .btn--outline:hover {
+    background: var(--green-deep);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 56px 0;
+    }
+  }
+</style>

@@ -1,0 +1,160 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">🌿 Green&nbsp;Bowl</div>
+        <p>
+          Inspiring healthier communities, one bowl at a time. Fresh ingredients,
+          sourced from farmers we know, prepared from scratch every morning.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="/menu">Our Menu</a>
+        <a href="/#story">Our Story</a>
+        <a href="/#locations">Locations</a>
+        <a href="/#order">Order Online</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">Careers</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Catering</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <p class="addr">128 Market Street<br />San Francisco, CA 94103</p>
+        <p class="hours">Mon–Sat · 10:30am – 9pm<br />Sun · 11am – 8pm</p>
+        <a href="tel:+14155550100" class="phone">(415) 555-0100</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} Green Bowl Healthy Eatery. All rights reserved.</p>
+      <div class="legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--green-deep);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 64px 0 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 360px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+
+  .socials {
+    display: flex;
+    gap: 20px;
+  }
+  .socials a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--green-soft);
+    transition: color 0.15s ease;
+  }
+  .socials a:hover {
+    color: #fff;
+  }
+
+  .footer-col h4 {
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    opacity: 0.8;
+    transition: opacity 0.15s ease;
+  }
+  .footer-col a:hover {
+    opacity: 1;
+    color: #fff;
+  }
+
+  .footer-col .addr,
+  .footer-col .hours {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 12px;
+  }
+
+  .footer-col .phone {
+    font-weight: 700;
+    color: var(--green-soft);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    opacity: 0.7;
+  }
+
+  .legal {
+    display: flex;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

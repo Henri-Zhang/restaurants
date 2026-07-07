@@ -1,0 +1,166 @@
+---
+const pathname = Astro.url.pathname;
+const isActive = (path: string) =>
+  path === "/"
+    ? pathname === "/"
+    : pathname.startsWith(path);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Green Bowl home">
+      <span class="logo-leaf">🌿</span>
+      <span class="logo-text">Green&nbsp;Bowl</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a href="/" class:list={["nav-link", { active: isActive("/") }]}>Home</a>
+      <a href="/menu" class:list={["nav-link", { active: isActive("/menu") }]}>Menu</a>
+      <a href="/#story" class="nav-link">Our Story</a>
+      <a href="/#locations" class="nav-link">Locations</a>
+    </nav>
+
+    <a href="/menu" class="btn btn--dark order-btn">Order Now</a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile">
+    <a href="/">Home</a>
+    <a href="/menu">Menu</a>
+    <a href="/#story">Our Story</a>
+    <a href="/#locations">Locations</a>
+    <a href="/menu" class="btn btn--dark" style="margin-top:12px;">Order Now</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector(".nav-toggle");
+  const mobile = document.querySelector(".nav-mobile");
+  toggle?.addEventListener("click", () => {
+    const open = mobile?.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(!!open));
+  });
+  document.querySelectorAll(".nav-mobile a").forEach((a) =>
+    a.addEventListener("click", () => {
+      mobile?.classList.remove("open");
+      toggle?.setAttribute("aria-expanded", "false");
+    }),
+  );
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253, 252, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 24px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--green-deep);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-leaf {
+    font-size: 1.3rem;
+  }
+
+  .nav-desktop {
+    display: flex;
+    gap: 32px;
+    margin-left: auto;
+    margin-right: 16px;
+  }
+
+  .nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.15s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background: var(--green-mid);
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  .nav-link.active {
+    color: var(--green-deep);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 16px 24px 24px;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile.open {
+    display: flex;
+  }
+  .nav-mobile a {
+    padding: 10px 0;
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile a:last-of-type {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-desktop,
+    .order-btn {
+      display: none;
+    }
+    .nav-toggle {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,108 @@
+{
+  "categories": [
+    {
+      "name": "Signature Salads",
+      "items": [
+        {
+          "name": "Super Green Goddess",
+          "desc": "Mixed greens, avocado, cucumber, scallions, roasted broccoli, basil, and our house green goddess dressing.",
+          "price": "$13.50",
+          "calories": 420,
+          "tags": ["vegan", "gluten-free"]
+        },
+        {
+          "name": "Harvest Bowl",
+          "desc": "Shredded kale, wild rice, roasted sweet potato, apple, goat cheese, toasted almonds, and balsamic vinaigrette.",
+          "price": "$14.25",
+          "calories": 510,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Garden Mediterranean",
+          "desc": "Romaine, chickpeas, cherry tomatoes, feta, kalamata olives, red onion, and lemon-oregano dressing.",
+          "price": "$13.95",
+          "calories": 480,
+          "tags": ["vegetarian", "gluten-free"]
+        },
+        {
+          "name": "Buffalo Chicken",
+          "desc": "Mixed greens, grilled chicken, cherry tomatoes, celery, and spicy buffalo dressing with blue cheese crumbles.",
+          "price": "$15.50",
+          "calories": 540,
+          "tags": ["high-protein"]
+        }
+      ]
+    },
+    {
+      "name": "Grain Bowls",
+      "items": [
+        {
+          "name": "Miso Salmon Bowl",
+          "desc": "Brown rice, miso-glazed salmon, edamame, avocado, carrot ribbons, sesame seeds, and ginger-miso dressing.",
+          "price": "$16.95",
+          "calories": 560,
+          "tags": ["gluten-free", "high-protein"]
+        },
+        {
+          "name": "Crispy Rice Bowl",
+          "desc": "Wild rice, crispy chickpeas, roasted cauliflower, kale, currants, and tahini-lemon dressing.",
+          "price": "$13.75",
+          "calories": 490,
+          "tags": ["vegan", "gluten-free"]
+        },
+        {
+          "name": "Chicken Pesto Bowl",
+          "desc": "Farro, grilled chicken, roasted zucchini, cherry tomatoes, fresh mozzarella, and basil pesto.",
+          "price": "$15.25",
+          "calories": 580,
+          "tags": ["high-protein"]
+        }
+      ]
+    },
+    {
+      "name": "Warm Plates",
+      "items": [
+        {
+          "name": "Roasted Veggie Plate",
+          "desc": "Seasonal roasted vegetables, quinoa, hummus, and warm pita with a drizzle of olive oil.",
+          "price": "$12.95",
+          "calories": 450,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Steak & Greens",
+          "desc": "Caramelized garlic steak, sautéed greens, roasted sweet potato, and chimichurri.",
+          "price": "$17.50",
+          "calories": 610,
+          "tags": ["high-protein", "gluten-free"]
+        }
+      ]
+    },
+    {
+      "name": "Sides & Extras",
+      "items": [
+        {
+          "name": "Avocado Toast",
+          "desc": "Sourdough toast, smashed avocado, chili flakes, and a squeeze of lemon.",
+          "price": "$6.50",
+          "calories": 280,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Rosemary Focaccia",
+          "desc": "Freshly baked focaccia with rosemary and sea salt. Served with olive oil.",
+          "price": "$4.50",
+          "calories": 220,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Fresh Fruit Cup",
+          "desc": "Seasonal fresh fruit — berries, melon, and citrus.",
+          "price": "$5.95",
+          "calories": 150,
+          "tags": ["vegan", "gluten-free"]
+        }
+      ]
+    }
+  ]
+}
