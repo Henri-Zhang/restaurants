@@ -1,0 +1,245 @@
+---
+import { restaurants } from "../data/restaurants";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Restaurant Website Templates</title>
+    <meta name="description" content="A collection of restaurant website demos. Pick a template that fits your vibe and click through to the live demo." />
+    <style>
+      :root {
+        color: #10233f;
+        background:
+          radial-gradient(circle at top left, rgba(255, 180, 82, 0.24), transparent 34vw),
+          linear-gradient(135deg, #eef7ff 0%, #f8fbff 46%, #fff6e8 100%);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 64px 0;
+      }
+
+      header {
+        margin-bottom: 40px;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(36px, 6vw, 72px);
+        font-weight: 700;
+        line-height: 1.05;
+      }
+
+      .lead {
+        max-width: 760px;
+        margin: 0;
+        color: #4c6480;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        display: flex;
+        min-height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        border: 1px solid rgba(36, 118, 214, 0.16);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 18px 46px rgba(27, 91, 156, 0.1);
+        text-decoration: none;
+        color: inherit;
+        transition:
+          transform 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 60px rgba(27, 91, 156, 0.18);
+      }
+
+      .thumbnail {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(36, 118, 214, 0.12);
+      }
+
+        .thumbnail::after {
+        content: "Open demo →";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        background: rgba(16, 35, 63, 0.42);
+        opacity: 0;
+        transition: opacity 220ms ease;
+      }
+
+      .card:hover .thumbnail::after {
+        opacity: 1;
+      }
+
+      .thumb-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 64px;
+        transition: transform 260ms ease;
+      }
+
+      .card:hover .thumb-inner {
+        transform: scale(1.05);
+      }
+
+      .card-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .tag {
+        width: max-content;
+        height: 26px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: #ff8a1f;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .card-title-row {
+        margin-top: 14px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 26px;
+        line-height: 1.2;
+      }
+
+      .card p {
+        margin: 12px 0 0;
+        color: #53677f;
+        line-height: 1.65;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .meta span {
+        padding: 5px 8px;
+        border: 1px solid rgba(36, 118, 214, 0.16);
+        border-radius: 6px;
+        background: #eef7ff;
+        color: #295d98;
+        font-size: 12px;
+      }
+
+      footer {
+        margin-top: 48px;
+        color: #6a7f96;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      @media (max-width: 980px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 620px) {
+        main {
+          width: min(100% - 28px, 1120px);
+          padding: 40px 0;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Restaurant Website Templates</h1>
+        <p class="lead">
+          A handpicked set of restaurant website demos. Find one that matches your
+          restaurant's style, click the card, and step into the live demo. Each demo
+          lives on its own path so you can preview and customize it independently.
+        </p>
+      </header>
+
+      <section class="grid" aria-label="Restaurant template list" id="template-grid">
+        {
+          restaurants.map((r) => (
+            <a class="card" href={`/demos/${r.slug}/`} aria-label={`Open the ${r.name} demo`}>
+              <span class="thumbnail">
+                <span class="thumb-inner" style={`background:${r.gradient};`}>{r.emoji}</span>
+              </span>
+              <span class="card-body">
+                <span class="tag">{r.tag}</span>
+                <span class="card-title-row">
+                  <h2>{r.name}</h2>
+                </span>
+                <p>{r.description}</p>
+                <span class="meta">
+                  {r.meta.map((m) => (
+                    <span>{m}</span>
+                  ))}
+                </span>
+              </span>
+            </a>
+          ))
+        }
+      </section>
+
+        <footer>
+          Restaurant website demo collection · updated regularly
+        </footer>
+    </main>
+  </body>
+</html>
