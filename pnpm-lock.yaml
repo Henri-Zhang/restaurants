@@ -39,8 +39,8 @@ importers:
   src/demos/sichuan-hotpot:
     dependencies:
       astro:
-        specifier: ^5.13.0
-        version: 5.18.2(lightningcss@1.32.0)(rollup@4.62.2)(typescript@5.0.2)
+        specifier: ^7.0.6
+        version: 7.0.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(rollup@4.62.2)
 
   src/demos/skewer-alley:
     dependencies:
