@@ -1,0 +1,136 @@
+{
+  "categories": [
+    {
+      "name": "Signature Broths",
+      "items": [
+        {
+          "name": "Mala Red Oil",
+          "desc": "House-rendered beef tallow, 18 spices, Erjingtao chilies, and Sichuan peppercorn. The classic numbing-spicy base.",
+          "price": "$12",
+          "calories": 0,
+          "tags": ["spicy", "signature"]
+        },
+        {
+          "name": "Mushroom Trio",
+          "desc": "Wild porcini, shiitake, and enoki simmered with jujube and goji. Mild, earthy, comforting.",
+          "price": "$12",
+          "calories": 0,
+          "tags": ["mild", "vegetarian"]
+        },
+        {
+          "name": "Split Pot (Yuan Yang)",
+          "desc": "Mala red oil on one side, mushroom broth on the other. For tables that can't decide.",
+          "price": "$16",
+          "calories": 0,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Tomato Beef Bone",
+          "desc": "Slow-simmered beef bone broth with ripe tomato, onion, and a hint of rock sugar. Kid-friendly.",
+          "price": "$13",
+          "calories": 0,
+          "tags": ["mild"]
+        }
+      ]
+    },
+    {
+      "name": "Premium Meats",
+      "items": [
+        {
+          "name": "Wagyu Beef Slices",
+          "desc": "Thinly sliced A4 marbled wagyu. Three seconds in the broth and it melts on the tongue.",
+          "price": "$28",
+          "calories": 320,
+          "tags": ["premium", "high-protein"]
+        },
+        {
+          "name": "Hand-Cut Beef Platter",
+          "desc": "Fresh beef shank, hand-sliced to order, with tendon and a little fat for flavor.",
+          "price": "$18",
+          "calories": 280,
+          "tags": ["high-protein"]
+        },
+        {
+          "name": "Lamb Shoulder Roll",
+          "desc": "Rolled lamb shoulder with a strip of fat. Cajun-spiced lamb, perfect for the red broth.",
+          "price": "$16",
+          "calories": 240,
+          "tags": ["high-protein"]
+        },
+        {
+          "name": "Black Pork Belly",
+          "desc": "Iberico-style black pork belly, sliced thin. Rich, buttery, ideal for quick dipping.",
+          "price": "$17",
+          "calories": 410,
+          "tags": ["premium"]
+        }
+      ]
+    },
+    {
+      "name": "House-Made Bites",
+      "items": [
+        {
+          "name": "Spicy Beef Tripe",
+          "desc": "Hairy tripe, blanched in the pot for eight seconds. Crispy, chewy, smoky-spicy.",
+          "price": "$11",
+          "calories": 120,
+          "tags": ["spicy"]
+        },
+        {
+          "name": "Duck Blood Curd",
+          "desc": "Silken duck blood cake, our daily ritual. Locks in the broth, soft as custard.",
+          "price": "$6",
+          "calories": 80,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Pork Meatballs",
+          "desc": "Hand-chopped pork shoulder, mint, and ginger. Poach them yourself; do not overcook.",
+          "price": "$9",
+          "calories": 210,
+          "tags": ["high-protein"]
+        },
+        {
+          "name": "Quail Eggs",
+          "desc": "Ten per skewer. Creamy yolk, alkaline-cured white. A hotpot staple since forever.",
+          "price": "$5",
+          "calories": 90,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "name": "Veggies & Tofu",
+      "items": [
+        {
+          "name": "Lotus Root Slices",
+          "desc": "Fresh lotus root, cut into coins. Crunchy, sweet, the perfect fire break.",
+          "price": "$7",
+          "calories": 110,
+          "tags": ["vegetarian", "gluten-free"]
+        },
+        {
+          "name": "Hand-Torn Tofu",
+          "desc": "Pressed tofu from a Chengdu workshop. Soaks up broth like a sponge, won't fall apart.",
+          "price": "$6",
+          "calories": 150,
+          "tags": ["vegan", "gluten-free"]
+        },
+        {
+          "name": "Cilantro Bunches",
+          "desc": "Whole-leaf cilantro for the quick dip. A fragrant, citrusy punch between bites.",
+          "price": "$5",
+          "calories": 20,
+          "tags": ["vegan", "gluten-free"]
+        },
+        {
+          "name": "Hand-Pulled Noodles",
+          "desc": "Lanzhou-style hand-pulled noodles. Stretch, drop, cook 90 seconds. The perfect last bite.",
+          "price": "$5",
+          "calories": 280,
+          "tags": ["vegan"]
+        }
+      ]
+    }
+  ]
+}

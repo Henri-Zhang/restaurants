@@ -1,0 +1,166 @@
+---
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">🔥 Spice Pit</div>
+        <p>
+          The numbing-spicy ritual, tableside. We render our own chili oil,
+          grind our own peppercorns, and do not hold back. Open late.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="WeChat">WeChat</a>
+          <a href="#" aria-label="Dianping">Dianping</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href={`${base}menu/`}>Full Menu</a>
+        <a href={`${base}#vibe`}>The Vibe</a>
+        <a href={`${base}#private`}>Private Rooms</a>
+        <a href={`${base}#book`}>Reservations</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">Careers</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Catering</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <p class="addr">268 Sichuan Lane<br />Chengdu District, 610000</p>
+        <p class="hours">Tue–Sun · 5pm&nbsp;–&nbsp;2am<br />Closed Mondays</p>
+        <a href="tel:+86286855000" class="phone">+86 28 6855 0000</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} Spice Pit Sichuan Hotpot. All rights reserved.</p>
+      <div class="legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Food Safety</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--charcoal);
+    color: rgba(253, 246, 236, 0.6);
+    padding: 64px 0 32px;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 360px;
+    margin-bottom: 20px;
+    opacity: 0.7;
+  }
+
+  .socials {
+    display: flex;
+    gap: 20px;
+  }
+  .socials a {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ember);
+    transition: color 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .socials a:hover {
+    color: var(--gold);
+  }
+
+  .footer-col h4 {
+    color: var(--cream);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    opacity: 0.65;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+  .footer-col a:hover {
+    opacity: 1;
+    color: var(--ember);
+  }
+
+  .footer-col .addr,
+  .footer-col .hours {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.65;
+    margin-bottom: 12px;
+  }
+
+  .footer-col .phone {
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    opacity: 0.5;
+  }
+
+  .legal {
+    display: flex;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

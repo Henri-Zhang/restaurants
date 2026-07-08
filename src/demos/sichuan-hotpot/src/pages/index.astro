@@ -1,46 +1,876 @@
 ---
-// Spice Pit Sichuan Hotpot — standalone demo (placeholder)
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const base = import.meta.env.BASE_URL;
+
+const dips = [
+  { emoji: "🥩", name: "Wagyu Beef", time: "3s", heat: 2, note: "Three swishes in the red oil. Any longer and it dissolves." },
+  { emoji: "🐙", name: "Octopus Tentacle", time: "10s", heat: 3, note: "Drop it in, count slow. The curl tells you it is done." },
+  { emoji: "🥩", name: "Beef Tripe", time: "8s", heat: 4, note: "The classic crispy bite. Eight seconds, not one more." },
+  { emoji: "🥬", name: "Lotus Root", time: "40s", heat: 1, note: "Let it soften. The crunch is the fire break you need." },
+  { emoji: "🥆", name: "Tofu Puff", time: "20s", heat: 1, note: "Soaks up the broth like a sponge. Squeeze-on-tongue." },
+  { emoji: "🍜", name: "Hand-Pulled Noodles", time: "90s", heat: 2, note: "The last bite. Stretch, drop, ninety seconds. Wipe the pot clean." },
+];
+
+const broths = [
+  { key: "mala", name: "Mala Red Oil", heat: 4, mood: "linear-gradient(135deg, #780000 0%, #c1121f 100%)", note: "Beef tallow · Erjingtao chilies · 18 spices · Sichuan peppercorn", pairs: "Wagyu · Tripe · Quail eggs · Hand-pulled noodles" },
+  { key: "mushroom", name: "Mushroom Trio", heat: 1, mood: "linear-gradient(135deg, #4a3728 0%, #8a7a6a 100%)", note: "Porcini · shiitake · enoki · jujube · goji berry", pairs: "Tofu puff · Lotus root · Cilantro bunches · Mushrooms" },
+  { key: "tomato", name: "Tomato Beef Bone", heat: 1, mood: "linear-gradient(135deg, #c4452f 0%, #e8783a 100%)", note: "Slow-simmered bone stock · vine tomato · rock sugar", pairs: "Meatballs · Lamb shoulder · Greens · Noodles" },
+];
+
+const rooms = [
+  { city: "Chengdu", seats: 4, hue: "#c1121f" },
+  { city: "Chongqing", seats: 6, hue: "#e63946" },
+  { city: "Ya'an", seats: 2, hue: "#f4a261" },
+  { city: "Leshan", seats: 4, hue: "#e9c46a" },
+  { city: "Mianyang", seats: 6, hue: "#9b2226" },
+  { city: "Kangding", seats: 3, hue: "#bb3e03" },
+];
+
+const heatMeter = (n: number) =>
+  `<span class="hd">🌶</span>`.repeat(n);
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Spice Pit Sichuan Hotpot</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-      .wrap { text-align: center; padding: 40px; }
-      .emoji { font-size: 88px; }
-      h1 { margin: 16px 0 8px; font-size: 40px; }
-      p { margin: 0; opacity: 0.85; font-size: 18px; }
-      .back {
-        display: inline-block;
-        margin-top: 28px;
-        padding: 10px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 999px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 14px;
-      }
-      .back:hover { background: rgba(255, 255, 255, 0.15); }
-    </style>
-  </head>
-  <body style="background:linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);">
-    <div class="wrap">
-      <div class="emoji">🍲</div>
-      <h1>Spice Pit Sichuan Hotpot</h1>
-      <p>This demo is a standalone Astro project. Edit the files here, then copy this folder out to deliver.</p>
-      <a class="back" href="/">← Back to gallery</a>
+<Layout>
+  <Header />
+
+  <!-- Marquee ticker -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>🔥 Mala broth brewed in-house</span>
+      <span>·</span>
+      <span>Open till 2am nightly</span>
+      <span>·</span>
+      <span>🍺 Beer towers on tap</span>
+      <span>·</span>
+      <span>🏮 Six private rooms</span>
+      <span>·</span>
+      <span>🌶 18 spices in the pot</span>
+      <span>·</span>
+      <span>🥢 Hand-pulled noodles nightly</span>
+      <span>·</span>
+      <span>🔥 Mala broth brewed in-house</span>
+      <span>·</span>
+      <span>Open till 2am nightly</span>
+      <span>·</span>
+      <span>🍺 Beer towers on tap</span>
+      <span>·</span>
+      <span>🏮 Six private rooms</span>
+      <span>·</span>
+      <span>🌶 18 spices in the pot</span>
+      <span>·</span>
+      <span>🥢 Hand-pulled noodles nightly</span>
+      <span>·</span>
     </div>
-  </body>
-</html>
+  </div>
+
+  <!-- Asymmetric hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Numbing · Spicy · Late Night</p>
+        <h1>
+          Bring the<br />flame.<br />
+          <span class="hero-accent">Eat the fire.</span>
+        </h1>
+        <p class="hero-sub">
+          One pot per table, eighteen spices in the broth, and a room that
+          keeps roaring till the #26 bus runs. This is hotpot the way it should
+          be — loud, magnetic, dripping with chili oil.
+        </p>
+        <div class="hero-cta">
+          <a href={`${base}menu/`} class="btn btn--fire">Build a pot →</a>
+          <a href={`${base}#book`} class="btn btn--gold">Book a table</a>
+        </div>
+      </div>
+
+      <div class="hero-pot" aria-hidden="true">
+        <div class="pot-steam"><span>💨</span><span>💨</span><span>💨</span></div>
+        <div class="pot-bowl">
+          <div class="pot-split pot-split--red"></div>
+          <div class="pot-split pot-split--gold"></div>
+          <div class="pot-center"></div>
+        </div>
+        <div class="pot-bubbles">
+          <span style="--d:0s;--dx:8px">🥩</span>
+          <span style="--d:1.2s;--dx:-10px">🥬</span>
+          <span style="--d:2.4s;--dx:6px">🌶</span>
+          <span style="--d:0.6s;--dx:-8px">🥄</span>
+          <span style="--d:1.8s;--dx:10px">🍜</span>
+          <span style="--d:3s;--dx:-6px">🥢</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dipping Guide -->
+  <section class="section dipping" id="vibe">
+    <div class="container dipping-grid">
+      <div class="dipping-intro">
+        <p class="eyebrow">At The Table</p>
+        <h2>Cook it yourself.<br />We just time it for you.</h2>
+        <p>
+          Every table gets a pot captain. They will tell you exactly how many
+          seconds to hold the meat in the broth — because three seconds is
+          the difference between a great bite and a wasted one. Here is the
+          cheat sheet.
+        </p>
+        <div class="dipping-legend">
+          <span class="legend-chip"><span class="legend-dot legend-dot--mild"></span>Mild</span>
+          <span class="legend-chip"><span class="legend-dot legend-dot--med"></span>Medium</span>
+          <span class="legend-chip"><span class="legend-dot legend-dot--hot"></span>Hot</span>
+        </div>
+      </div>
+
+      <ol class="dip-list">
+        {dips.map((d) => (
+          <li class="dip-row">
+            <span class="dip-emoji">{d.emoji}</span>
+            <div class="dip-body">
+              <h3>{d.name}</h3>
+              <p>{d.note}</p>
+              <span class="heat-meter" set:html={heatMeter(d.heat)}></span>
+            </div>
+            <span class="dip-time">{d.time}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Broth selector -->
+  <section class="section broths" id="broths">
+    <div class="container">
+      <div class="broths-head">
+        <p class="eyebrow">Pick Your Base</p>
+        <h2>Three broths. One pot.</h2>
+        <p class="broths-sub">
+          Tap a broth. See what it carries, how hot it runs, and what to dip
+          in it. When in doubt, order the split pot — half-and-half.
+        </p>
+      </div>
+
+      <div class="selector">
+        {broths.map((b, i) => (
+          <input type="radio" name="broth" id={`rb-${b.key}`} class="sel-radio" checked={i === 0} />
+        ))}
+        <div class="sel-tabs" role="tablist">
+          {broths.map((b) => (
+            <label for={`rb-${b.key}`} class="sel-tab" data-broth={b.key}>
+              <span class="sel-dot" style={`--hue:${b.mood}`}></span>
+              {b.name}
+            </label>
+          ))}
+        </div>
+
+        <div class="sel-stage">
+          {broths.map((b) => (
+            <article class="sel-panel" data-broth={b.key}>
+              <div class="sel-pot" style={`--mood:${b.mood}`}>
+                <div class="sel-pot-steam">💨 💨</div>
+                <div class="sel-pot-ring"></div>
+                <div class="sel-pot-inner"></div>
+                <span class="sel-pot-emoji">🍲</span>
+              </div>
+              <div class="sel-info">
+                <span class="sel-heat" set:html={heatMeter(b.heat)}></span>
+                <h3>{b.name}</h3>
+                <p class="sel-note">{b.note}</p>
+                <div class="sel-pairs">
+                  <span class="sel-pairs-label">Pairs with</span>
+                  <span class="sel-pairs-list">{b.pairs}</span>
+                </div>
+                <a href={`${base}menu/`}>See on the menu →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Private rooms carousel -->
+  <section class="section rooms" id="private">
+    <div class="container">
+      <div class="rooms-head">
+        <p class="eyebrow">For The Table</p>
+        <h2>Six rooms.<br />Six cities.</h2>
+        <p class="rooms-sub">
+          Two to ten guests. Soundproofed doors. A dedicated pot captain so you
+          only have to mind the conversation. Scroll across.
+        </p>
+      </div>
+    </div>
+    <div class="rooms-track-wrap">
+      <div class="rooms-track">
+        {rooms.map((r) => (
+          <article class="room-card" style={`--city-hue:${r.hue}`}>
+            <div class="room-top">
+              <span class="room-glyph">🏮</span>
+              <span class="room-cap">
+                <span class="room-cap-bar" style={`width:${(r.seats / 6) * 100}%`}></span>
+              </span>
+            </div>
+            <h3>{r.city}</h3>
+            <p class="room-seats">Seats {r.seats} · pot captain included</p>
+            <a href={`${base}#book`} class="room-link">Reserve this room →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking widget -->
+  <section class="section book" id="book">
+    <div class="container book-grid">
+      <div class="book-copy">
+        <p class="eyebrow">Reservations</p>
+        <h2>Book your pot.</h2>
+        <p>
+          Walk-ins welcome after 10pm. Before that, the rooms go fast —
+          especially for parties of four or more. Tell us when you are coming
+          and how many burners you need.
+        </p>
+        <div class="book-meta">
+          <div><span>📍</span> 268 Sichuan Lane, Chengdu District</div>
+          <div><span>🕒</span> Tue – Sun · 5pm – 2am</div>
+          <div><span>📞</span> <a href="tel:+86286855000">+86 28 6855 0000</a></div>
+        </div>
+      </div>
+      <form class="book-form" onsubmit="return false">
+        <label>
+          <span>Party size</span>
+          <input type="range" min="1" max="10" value="4" class="party-range" />
+          <output class="party-out">4</output>
+        </label>
+        <label>
+          <span>Date</span>
+          <input type="date" class="book-date" />
+        </label>
+        <label>
+          <span>Time</span>
+          <select class="book-time">
+            <option>5:00 PM</option>
+            <option>7:00 PM</option>
+            <option>9:00 PM</option>
+            <option>11:00 PM</option>
+            <option>1:00 AM</option>
+          </select>
+        </label>
+        <label class="room-toggle">
+          <input type="checkbox" />
+          <span></span>
+          Private room (+¥80/person)
+        </label>
+        <button type="button" class="btn btn--fire" style="width:100%;justify-content:center;">Check availability</button>
+        <p class="book-fine">We hold your table for 15 minutes past your time.</p>
+      </form>
+    </div>
+  </section>
+
+  <Footer />
++</Layout>
+
+<script>
+  // Live party-size readout on the booking slider.
+  const range = document.querySelector(".party-range");
+  const out = document.querySelector(".party-out");
+  range?.addEventListener("input", () => {
+    if (out) out.textContent = String((range as HTMLInputElement).value);
+  });
+</script>
+
+<style>
+  /* === Marquee ticker === */
+  .marquee {
+    background: var(--crimson-deep);
+    color: var(--cream);
+    border-bottom: 1px solid var(--border-strong);
+    overflow: hidden;
+    padding: 9px 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 24px;
+    white-space: nowrap;
+    animation: marquee 32s linear infinite;
+    padding-left: 24px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* === Hero === */
+  .hero {
+    position: relative;
+    padding: 64px 0 56px;
+    background:
+      radial-gradient(ellipse at 75% 30%, rgba(193, 18, 31, 0.22), transparent 55%),
+      radial-gradient(ellipse at 20% 90%, rgba(244, 162, 97, 0.10), transparent 50%),
+      var(--ink);
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero-eyebrow { margin-bottom: 22px; }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5.4rem);
+    line-height: 0.92;
+    margin-bottom: 26px;
+  }
+  .hero-accent {
+    color: var(--crimson);
+    text-shadow: 0 0 50px rgba(193, 18, 31, 0.4);
+  }
+  .hero-sub {
+    font-size: 1.12rem;
+    color: rgba(253, 246, 236, 0.66);
+    max-width: 460px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Hero pot viewport */
+  .hero-pot {
+    position: relative;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pot-bowl {
+    position: relative;
+    width: 240px;
+    height: 200px;
+    border-radius: 50% 50% 18px 18px / 60% 60% 18px 18px;
+    background:
+      radial-gradient(circle at 50% 80%, rgba(0,0,0,0.4), transparent),
+      linear-gradient(180deg, #1a1411 0%, #2a1812 100%);
+    box-shadow:
+      inset 0 -20px 50px rgba(193, 18, 31, 0.25),
+      inset 0 18px 36px rgba(244, 162, 97, 0.18),
+      0 30px 60px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+  .pot-split {
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    border-radius: 50% 24px 8px 50% / 55% 14px 8px 55%;
+  }
+  .pot-split--red {
+    left: 14px;
+    right: 50%;
+    background: radial-gradient(circle at 30% 40%, #e63946, #780000 60%);
+  }
+  .pot-split--gold {
+    left: 50%;
+    right: 14px;
+    background: radial-gradient(circle at 70% 40%, #e9c46a, #8a6a1a 60%);
+  }
+  .pot-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 70%;
+    background: linear-gradient(180deg, #1a1411, #0c0a09);
+    border-radius: 4px;
+  }
+  .pot-steam {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 18px;
+    font-size: 1.4rem;
+    animation: steam 3s ease-in-out infinite;
+  }
+  @keyframes steam {
+    0%, 100% { transform: translate(-50%, 0); opacity: 0.5; }
+    50% { transform: translate(-50%, -12px); opacity: 1; }
+  }
+  .pot-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .pot-bubbles span {
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    font-size: 1.3rem;
+    animation: floatUp 5s ease-in-out infinite;
+    animation-delay: var(--d);
+  }
+  @keyframes floatUp {
+    0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translate(var(--dx), -180px) scale(1); opacity: 0; }
+  }
+
+  /* === Dipping guide === */
+  .dipping {
+    background: var(--charcoal);
+  }
+  .dipping-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 56px;
+  }
+  .dipping-intro {
+    position: sticky;
+    top: 96px;
+    align-self: start;
+  }
+  .dipping-intro h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 14px 0 18px;
+    line-height: 1.05;
+  }
+  .dipping-intro p {
+    color: rgba(253, 246, 236, 0.6);
+    font-size: 0.95rem;
+    max-width: 380px;
+  }
+  .dipping-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .legend-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: rgba(253, 246, 236, 0.7);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .legend-dot--mild { background: var(--gold); }
+  .legend-dot--med { background: var(--ember); }
+  .legend-dot--hot { background: var(--crimson); }
+
+  .dip-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .dip-row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 22px 8px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+  }
+  .dip-row:hover {
+    background: rgba(193, 18, 31, 0.05);
+  }
+  .dip-emoji {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .dip-body h3 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .dip-body p {
+    color: rgba(253, 246, 236, 0.55);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .heat-meter {
+    display: inline-flex;
+    gap: 2px;
+    font-size: 0.9rem;
+  }
+  .heat-meter .hd { color: var(--crimson); }
+  .heat-meter .hd-off { color: var(--ink-muted); }
+  .dip-time {
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* === Broth selector === */
+  .broths {
+    background: var(--ink);
+  }
+  .broths-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .broths-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 12px 0;
+  }
+  .broths-sub {
+    color: rgba(253, 246, 236, 0.6);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .selector {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .sel-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sel-tabs {
+    display: flex;
+    background: var(--charcoal);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .sel-tab {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.86rem;
+    color: rgba(253, 246, 236, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    transition: color 0.18s ease, background 0.18s ease;
+  }
+  .sel-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--hue);
+  }
+
+  /* CSS-only tab switching driven by hidden radios. */
+  #rb-mala:checked ~ .sel-tabs .sel-tab[for="rb-mala"],
+  #rb-mushroom:checked ~ .sel-tabs .sel-tab[for="rb-mushroom"],
+  #rb-tomato:checked ~ .sel-tabs .sel-tab[for="rb-tomato"] {
+    background: var(--crimson);
+    color: #fff;
+  }
+  #rb-mala:checked ~ .sel-stage .sel-panel[data-broth="mala"],
+  #rb-mushroom:checked ~ .sel-stage .sel-panel[data-broth="mushroom"],
+  #rb-tomato:checked ~ .sel-stage .sel-panel[data-broth="tomato"] {
+    display: grid;
+  }
+
+  .sel-stage {
+    position: relative;
+  }
+  .sel-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: center;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 36px;
+  }
+  .sel-pot {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--mood);
+    box-shadow: inset 0 -30px 60px rgba(0,0,0,0.35), 0 20px 50px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sel-pot-steam {
+    position: absolute;
+    top: -8px;
+    font-size: 1.4rem;
+    opacity: 0.65;
+  }
+  .sel-pot-ring {
+    position: absolute;
+    inset: 8px;
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .sel-pot-inner {
+    position: absolute;
+    inset: 18%;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.35);
+  }
+  .sel-pot-emoji {
+    font-size: 3.4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .sel-heat {
+    display: inline-flex;
+    gap: 3px;
+    font-size: 1rem;
+    margin-bottom: 14px;
+  }
+  .sel-heat .hd { color: var(--crimson); }
+  .sel-heat .hd-off { color: var(--ink-muted); }
+  .sel-info h3 {
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .sel-note {
+    color: rgba(253, 246, 236, 0.6);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+  .sel-pairs {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-bottom: 18px;
+  }
+  .sel-pairs-label {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .sel-pairs-list {
+    font-size: 0.92rem;
+    color: rgba(253, 246, 236, 0.75);
+  }
+  .sel-info a {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ember);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .sel-info a:hover { color: var(--gold); }
+
+  /* === Rooms carousel === */
+  .rooms {
+    background: var(--charcoal);
+  }
+  .rooms-head {
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .rooms-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 12px 0;
+    line-height: 1.05;
+  }
+  .rooms-sub {
+    color: rgba(253, 246, 236, 0.55);
+  }
+  .rooms-track-wrap {
+    overflow-x: auto;
+    padding: 0 24px 24px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .rooms-track-wrap::-webkit-scrollbar { display: none; }
+  .rooms-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+  }
+  .room-card {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--ink);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 28px;
+    transition: transform 0.2s ease;
+  }
+  .room-card:hover { transform: translateY(-4px); }
+  .room-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .room-glyph { font-size: 1.5rem; }
+  .room-cap {
+    width: 56px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .room-cap-bar {
+    display: block;
+    height: 100%;
+    background: var(--city-hue);
+  }
+  .room-card h3 {
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .room-seats {
+    font-size: 0.85rem;
+    color: rgba(253, 246, 236, 0.55);
+    margin-bottom: 20px;
+  }
+  .room-link {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--city-hue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* === Booking widget === */
+  .book {
+    background: var(--ink);
+  }
+  .book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .book-copy h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 12px 0 18px;
+  }
+  .book-copy p {
+    color: rgba(253, 246, 236, 0.62);
+    font-size: 0.95rem;
+    max-width: 460px;
+    margin-bottom: 28px;
+  }
+  .book-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .book-meta div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: rgba(253, 246, 236, 0.7);
+  }
+  .book-meta div a { color: var(--gold); font-weight: 700; }
+
+  .book-form {
+    background: var(--charcoal);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .book-form > label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .book-form input[type="date"],
+  .book-form select {
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px 14px;
+    color: var(--cream);
+    font: inherit;
+    font-size: 0.95rem;
+  }
+  .book-form input[type="date"] {
+    color-scheme: dark;
+  }
+  .party-range {
+    width: 100%;
+    accent-color: var(--crimson);
+  }
+  .party-out {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--ember);
+  }
+  .room-toggle {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    color: rgba(253, 246, 236, 0.85) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+  }
+  .room-toggle input { accent-color: var(--crimson); width: 18px; height: 18px; }
+  .room-toggle span { display: none; }
+  .book-fine {
+    font-size: 0.75rem !important;
+    color: rgba(253, 246, 236, 0.45);
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-weight: 400 !important;
+    margin: 4px 0 0;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hero-pot { height: 280px; }
+    .pot-bowl { width: 180px; height: 150px; }
+    .dipping-grid { grid-template-columns: 1fr; gap: 36px; }
+    .dipping-intro { position: static; }
+    .dip-row { grid-template-columns: 48px 1fr auto; gap: 14px; }
+    .sel-panel { grid-template-columns: 1fr; padding: 24px; }
+    .sel-pot { max-width: 220px; margin: 0 auto; }
+    .sel-tab { font-size: 0.72rem; padding: 10px 8px; letter-spacing: 0.04em; }
+    .book-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>
