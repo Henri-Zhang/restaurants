@@ -1,46 +1,656 @@
 ---
-// Lotus Cantonese Kitchen — standalone demo (placeholder)
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const base = import.meta.env.BASE_URL;
+
+const yumChaCards = [
+  {
+    title: "Brew the tea",
+    cname: "沏茶",
+    desc: "A pot of Iron Goddess or aged Pu-erh arrives first. It rinses the palate and sets the pace.",
+  },
+  {
+    title: "Pick the dim sum",
+    cname: "拣点",
+    desc: "Steamed baskets, fried parcels, and rice rolls pass by on the cart. Point and it is yours.",
+  },
+  {
+    title: "Linger",
+    cname: "叙旧",
+    desc: "Yum cha is not a meal to rush. It is a long conversation held over many small plates.",
+  },
+];
+
+const trolley = [
+  { name: "Har Gow", cname: "虾饺", price: "$9", tag: "steamed" },
+  { name: "Siu Mai", cname: "烧卖", price: "$8", tag: "steamed" },
+  { name: "Liu Sha Bao", cname: "流沙包", price: "$8", tag: "steamed" },
+  { name: "Char Siu Bao", cname: "叉烧包", price: "$7", tag: "steamed" },
+  { name: "Egg Tart", cname: "蛋挞", price: "$5", tag: "baked" },
+  { name: "Turnip Cake", cname: "萝卜糕", price: "$7", tag: "fried" },
+];
+
+const signatures = [
+  {
+    name: "Whole Roast Duck",
+    cname: "烧鸭",
+    desc: "Crisp skin, five-spice aroma, plum sauce. Carved tableside for the table.",
+    price: "$58",
+  },
+  {
+    name: "Beef Chow Fun",
+    cname: "干炒牛河",
+    desc: "Wok-charred rice noodles with sliced beef and bean sprouts. Wok hei in every strand.",
+    price: "$16",
+  },
+  {
+    name: "Steamed Whole Fish",
+    cname: "清蒸鱼",
+    desc: "Daily catch with ginger, scallion, and soy. Light, clean, and resolutely Cantonese.",
+    price: "MP",
+  },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lotus Cantonese Kitchen</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-      .wrap { text-align: center; padding: 40px; }
-      .emoji { font-size: 88px; }
-      h1 { margin: 16px 0 8px; font-size: 40px; }
-      p { margin: 0; opacity: 0.85; font-size: 18px; }
-      .back {
-        display: inline-block;
-        margin-top: 28px;
-        padding: 10px 20px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 999px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 14px;
-      }
-      .back:hover { background: rgba(255, 255, 255, 0.15); }
-    </style>
-  </head>
-  <body style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-    <div class="wrap">
-      <div class="emoji">🥢</div>
-      <h1>Lotus Cantonese Kitchen</h1>
-      <p>This demo is a standalone Astro project. Edit the files here, then copy this folder out to deliver.</p>
-      <a class="back" href="/">← Back to gallery</a>
-    </div>
-  </body>
-</html>
+<Layout>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-lattice" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow">Cantonese · Dim Sum · Tea House</p>
+          <h1>
+            Slow tea.<br />
+            <span class="hero-accent">Small plates.</span><br />
+            Long tables.
+          </h1>
+          <p class="hero-sub">
+            Lotus House is a Cantonese tea house built around yum cha — the art of
+            drinking tea, sharing baskets, and letting lunch stretch into the
+            afternoon.
+          </p>
+          <div class="hero-cta">
+            <a href={`${base}menu/`} class="btn btn--cinnabar">View the menu</a>
+            <a href={`${base}story/`} class="btn btn--gold">Our story</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="steamer">
+            <div class="steamer-lid">
+              <div class="lid-arch"></div>
+            </div>
+            <div class="steamer-body">
+              <div class="steam steam--1"></div>
+              <div class="steam steam--2"></div>
+              <div class="steam steam--3"></div>
+            </div>
+            <div class="steamer-base"></div>
+          </div>
+          <div class="vertical-text">
+            <span>一</span><span>盅</span><span>两</span><span>件</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The ritual of yum cha -->
+    <section class="section ritual" id="ritual">
+      <div class="container">
+        <div class="ritual-head">
+          <p class="eyebrow">The Ritual</p>
+          <h2>Yum cha is a state of mind.</h2>
+        </div>
+        <div class="ritual-grid">
+          {yumChaCards.map((card, i) => (
+            <article class="ritual-card">
+              <span class="ritual-number">{String(i + 1).padStart(2, "0")}</span>
+              <div class="ritual-title">
+                <h3>{card.title}</h3>
+                <span class="ritual-cname">{card.cname}</span>
+              </div>
+              <p>{card.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Dim sum trolley -->
+    <section class="section trolley" id="trolley">
+      <div class="container trolley-head">
+        <p class="eyebrow">From the Cart</p>
+        <h2>Today’s dim sum.</h2>
+        <p class="trolley-sub">
+          The trolley rolls by every few minutes. If you see something you like,
+          raise a hand. It is the only ordering system you need.
+        </p>
+      </div>
+      <div class="trolley-track-wrap">
+        <div class="trolley-track">
+          {trolley.map((item) => (
+            <article class="trolley-card">
+              <span class="trolley-tag">{item.tag}</span>
+              <div class="trolley-cname">{item.cname}</div>
+              <h3>{item.name}</h3>
+              <span class="trolley-price">{item.price}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Signatures -->
+    <section class="section signatures" id="signatures">
+      <div class="container">
+        <div class="signatures-head">
+          <p class="eyebrow">Chef’s Signatures</p>
+          <h2>Dishes that define the kitchen.</h2>
+        </div>
+        <div class="signatures-list">
+          {signatures.map((dish) => (
+            <article class="signature-row">
+              <div class="signature-meta">
+                <span class="signature-cname">{dish.cname}</span>
+                <h3>{dish.name}</h3>
+              </div>
+              <p class="signature-desc">{dish.desc}</p>
+              <span class="signature-price">{dish.price}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section class="section book" id="book">
+      <div class="container">
+        <div class="book-panel">
+          <div class="book-panel-lattice" aria-hidden="true"></div>
+          <div class="book-copy">
+            <p class="eyebrow">Reservations</p>
+            <h2>Join us for yum cha.</h2>
+            <p>
+              Walk-ins are welcome, but the best tables fill quickly on weekends.
+              Reserve for dim sum before 3pm, or dinner service until 10pm.
+            </p>
+            <a href="tel:+85225221188" class="book-phone">+852 2522 1188</a>
+          </div>
+          <form class="book-form" onsubmit="return false">
+            <label>
+              <span>Guests</span>
+              <input type="number" min="1" max="12" value="4" class="book-input" />
+            </label>
+            <label>
+              <span>Date</span>
+              <input type="date" class="book-input" />
+            </label>
+            <label>
+              <span>Time</span>
+              <select class="book-input">
+                <option>11:00 AM</option>
+                <option>1:00 PM</option>
+                <option>3:00 PM</option>
+                <option>6:00 PM</option>
+                <option>8:00 PM</option>
+              </select>
+            </label>
+            <button type="button" class="btn btn--cinnabar" style="width: 100%;">
+              Request table
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    padding: 64px 0;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(185, 59, 50, 0.08), transparent 40%),
+      radial-gradient(ellipse at 20% 90%, rgba(191, 160, 101, 0.1), transparent 40%),
+      var(--paper);
+  }
+  .hero-lattice {
+    position: absolute;
+    right: -5%;
+    top: 10%;
+    width: 360px;
+    height: 360px;
+    opacity: 0.22;
+    transform: rotate(45deg);
+    border: 1px solid var(--border-gold);
+    background:
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 33.33% 1px no-repeat,
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 1px 33.33% no-repeat;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    line-height: 1.02;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+  .hero-accent {
+    color: var(--cinnabar);
+  }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    max-width: 480px;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-art {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 420px;
+  }
+
+  /* Steamer CSS illustration */
+  .steamer {
+    position: relative;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .steamer-lid {
+    width: 180px;
+    height: 50px;
+    background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%);
+    border-radius: 50% 50% 8px 8px / 70% 70% 8px 8px;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  .lid-arch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-bottom: none;
+    border-radius: 40px 40px 0 0;
+  }
+  .steamer-body {
+    width: 200px;
+    height: 90px;
+    background: linear-gradient(180deg, #f0e6d6 0%, var(--paper-warm) 100%);
+    border-radius: 4px;
+    margin-top: -6px;
+    position: relative;
+    z-index: 2;
+    border: 1px solid var(--border-gold);
+    overflow: hidden;
+  }
+  .steam {
+    position: absolute;
+    bottom: 0;
+    width: 8px;
+    height: 30px;
+    background: rgba(31, 28, 24, 0.08);
+    border-radius: 999px;
+    animation: rise 3s ease-in-out infinite;
+  }
+  .steam--1 { left: 40%; animation-delay: 0s; }
+  .steam--2 { left: 55%; animation-delay: 1s; }
+  .steam--3 { left: 70%; animation-delay: 2s; }
+  @keyframes rise {
+    0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.4; }
+    50% { transform: translateY(-24px) scaleY(1.4); opacity: 0.8; }
+  }
+  .steamer-base {
+    width: 200px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 0 0 6px 6px;
+    margin-top: -1px;
+  }
+
+  .vertical-text {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.6rem;
+    color: var(--cinnabar);
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 0.3em;
+    opacity: 0.9;
+  }
+
+  /* Ritual */
+  .ritual {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .ritual-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .ritual-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-top: 14px;
+  }
+  .ritual-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .ritual-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ritual-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 46px var(--shadow);
+  }
+  .ritual-number {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .ritual-title {
+    margin-bottom: 14px;
+  }
+  .ritual-title h3 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+  .ritual-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    color: var(--cinnabar);
+    font-size: 0.95rem;
+  }
+  .ritual-card p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Trolley */
+  .trolley {
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .trolley-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .trolley-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-top: 12px;
+  }
+  .trolley-sub {
+    color: var(--ink-muted);
+    max-width: 540px;
+    margin: 16px auto 0;
+    font-size: 1.05rem;
+  }
+  .trolley-track-wrap {
+    width: 100%;
+    overflow-x: auto;
+    padding: 12px 0 32px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .trolley-track-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .trolley-track {
+    display: flex;
+    gap: 20px;
+    padding: 0 max(calc((100vw - 1180px) / 2 + 28px), 28px);
+    width: max-content;
+  }
+  .trolley-card {
+    width: 240px;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .trolley-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px var(--shadow);
+  }
+  .trolley-card::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--border-gold);
+    pointer-events: none;
+  }
+  .trolley-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--jade);
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .trolley-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 2rem;
+    color: var(--cinnabar);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .trolley-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+  }
+  .trolley-price {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1.05rem;
+  }
+
+  /* Signatures */
+  .signatures {
+    background: var(--paper-warm);
+  }
+  .signatures-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .signatures-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-top: 12px;
+  }
+  .signatures-list {
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .signature-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 0.9rem;
+    color: var(--cinnabar);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .signature-row h3 {
+    font-size: 1.35rem;
+  }
+  .signature-desc {
+    color: var(--ink-muted);
+    font-size: 0.98rem;
+  }
+  .signature-price {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Booking */
+  .book {
+    background: var(--paper);
+  }
+  .book-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px;
+    overflow: hidden;
+  }
+  .book-panel-lattice {
+    position: absolute;
+    right: -8%;
+    bottom: -12%;
+    width: 340px;
+    height: 340px;
+    opacity: 0.12;
+    border: 1px solid var(--gold);
+    background:
+      linear-gradient(var(--gold), var(--gold)) center / 33.33% 1px no-repeat,
+      linear-gradient(var(--gold), var(--gold)) center / 1px 33.33% no-repeat;
+  }
+  .book-copy {
+    position: relative;
+    z-index: 1;
+  }
+  .book-copy h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 14px 0 18px;
+  }
+  .book-copy p {
+    color: rgba(247, 244, 237, 0.7);
+    margin-bottom: 20px;
+    max-width: 420px;
+  }
+  .book-phone {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .book-form {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 18px;
+  }
+  .book-form label {
+    display: grid;
+    gap: 6px;
+  }
+  .book-form label span {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .book-input {
+    padding: 12px 14px;
+    border: 1px solid rgba(247, 244, 237, 0.2);
+    background: rgba(247, 244, 237, 0.06);
+    color: var(--paper);
+    font-size: 0.95rem;
+    border-radius: 2px;
+  }
+  .book-input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      justify-content: center;
+    }
+    .hero-art {
+      order: -1;
+      min-height: 300px;
+    }
+    .vertical-text {
+      right: 12%;
+    }
+    .ritual-grid {
+      grid-template-columns: 1fr;
+    }
+    .signature-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      text-align: center;
+    }
+    .book-panel {
+      grid-template-columns: 1fr;
+      padding: 40px;
+      text-align: center;
+    }
+    .book-copy p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>

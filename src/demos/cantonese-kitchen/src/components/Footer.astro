@@ -1,0 +1,191 @@
+---
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="footer-seal">莲</span>
+          <span>Lotus House</span>
+        </div>
+        <p>
+          Refined dim sum, wok-fired classics, and the quiet ritual of yum cha.
+          A Cantonese kitchen built for long family lunches.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="WeChat">WeChat</a>
+          <a href="#" aria-label="Dianping">Dianping</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href={base}>Home</a>
+        <a href={`${base}menu/`}>Menu</a>
+        <a href={`${base}story/`}>Story</a>
+        <a href={`${base}#book`}>Reservations</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <p class="hours-line">Mon – Fri<br />11am – 3pm · 5:30pm – 10pm</p>
+        <p class="hours-line">Sat – Sun<br />10am – 10:30pm</p>
+        <p class="hours-note">Dim sum until 3pm daily</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p class="addr">
+          18 Queen’s Road Central<br />
+          Hong Kong
+        </p>
+        <a href="tel:+85225221188" class="phone">+852 2522 1188</a>
+        <a href="mailto:hello@lotushouse.hk" class="email">hello@lotushouse.hk</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} Lotus House. All rights reserved.</p>
+      <div class="legal">
+        <a href="#">Privacy</a>
+        <a href="#">Food Safety</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: rgba(247, 244, 237, 0.7);
+    padding: 72px 0 32px;
+    border-top: 1px solid var(--border-gold);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr 1.6fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+  .footer-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--cinnabar);
+    color: #fff;
+    font-size: 0.95rem;
+    border-radius: 3px;
+  }
+
+  .footer-brand p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    max-width: 340px;
+    margin-bottom: 20px;
+  }
+
+  .socials {
+    display: flex;
+    gap: 22px;
+  }
+  .socials a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    transition: color 0.15s ease;
+    letter-spacing: 0.03em;
+  }
+  .socials a:hover {
+    color: var(--paper);
+  }
+
+  .footer-col h4 {
+    color: var(--paper);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    opacity: 0.8;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+  .footer-col a:hover {
+    opacity: 1;
+    color: var(--gold);
+  }
+
+  .hours-line,
+  .addr {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .hours-note {
+    font-size: 0.82rem;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  .phone,
+  .email {
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .email {
+    margin-top: 8px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(247, 244, 237, 0.12);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+
+  .legal {
+    display: flex;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

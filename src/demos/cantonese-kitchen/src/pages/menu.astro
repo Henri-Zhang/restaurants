@@ -1,0 +1,396 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import menu from "../data/menu.json";
+
+const categories = menu.categories;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Menu — Lotus House">
+  <Header />
+
+  <main>
+    <!-- Menu hero -->
+    <section class="menu-hero">
+      <div class="menu-hero-lattice" aria-hidden="true"></div>
+      <div class="container">
+        <p class="eyebrow" style="text-align: center;">The Menu</p>
+        <h1>
+          <span class="menu-title-en">Dim Sum · Wok · Tea</span>
+          <span class="menu-title-cn">点心 · 小炒 · 茗茶</span>
+        </h1>
+        <p class="menu-hero-sub">
+          Our menu follows the Cantonese table: tea first, then steamed baskets,
+          then roast meats, then a shared wok dish. Everything is made to be
+          passed around.
+        </p>
+      </div>
+    </section>
+
+    <!-- Category nav -->
+    <div class="cat-nav-wrap">
+      <div class="container">
+        <nav class="cat-nav">
+          {categories.map((cat) => (
+            <a href={`#${cat.name.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
+              <span class="cat-nav-en">{cat.name}</span>
+              <span class="cat-nav-cn">{cat.items[0]?.cname || ""}</span>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+
+    <!-- Menu sections -->
+    {categories.map((cat, idx) => (
+      <section
+        class:list={["menu-section", { "menu-section--alt": idx % 2 === 1 }]}
+        id={cat.name.toLowerCase().replace(/[^a-z]+/g, "-")}
+      >
+        <div class="container menu-grid">
+          <div class="menu-cat-head">
+            <span class="cat-index">{String(idx + 1).padStart(2, "0")}</span>
+            <h2>{cat.name}</h2>
+            <span class="cat-cname">{cat.items[0]?.cname ? cat.items[0].cname.slice(-1) : ""}</span>
+            <p class="cat-note">{cat.items.length} dishes</p>
+          </div>
+
+          <ul class="menu-list">
+            {cat.items.map((item) => (
+              <li class="menu-item">
+                <div class="menu-item-main">
+                  <div class="menu-item-title">
+                    <h3>{item.name}</h3>
+                    <span class="menu-item-cname">{item.cname}</span>
+                  </div>
+                  <div class="menu-item-dots" aria-hidden="true"></div>
+                  <span class="menu-item-price">{item.price}</span>
+                </div>
+                <p class="menu-item-desc">{item.desc}</p>
+                <div class="menu-item-tags">
+                  {item.tags.map((tag) => (
+                    <span class:list={["tag", `tag--${tag.replace(/\s+/g, "-")}`]}>{tag}</span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <!-- Tea pairing -->
+    <section class="section tea-pairing">
+      <div class="container">
+        <div class="tea-panel">
+          <div class="tea-copy">
+            <p class="eyebrow">Tea Pairing</p>
+            <h2>Ask your server for the right tea.</h2>
+            <p>
+              Iron Goddess cuts through fried dim sum. Aged Pu-erh stands up to
+              roast meats. Chrysanthemum soothes a table heavy on chili. Tea is
+              not an afterthought here.
+            </p>
+          </div>
+          <div class="tea-list">
+            <div class="tea-row">
+              <span class="tea-cname">铁观音</span>
+              <span>Iron Goddess Oolong</span>
+              <span class="tea-price">$6</span>
+            </div>
+            <div class="tea-row">
+              <span class="tea-cname">普洱</span>
+              <span>Aged Pu-erh</span>
+              <span class="tea-price">$7</span>
+            </div>
+            <div class="tea-row">
+              <span class="tea-cname">菊花</span>
+              <span>Chrysanthemum</span>
+              <span class="tea-price">$5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .menu-hero {
+    position: relative;
+    background: var(--paper-warm);
+    padding: 96px 0 72px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .menu-hero-lattice {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 500px;
+    height: 500px;
+    opacity: 0.08;
+    border: 1px solid var(--border-gold);
+    background:
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 33.33% 1px no-repeat,
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 1px 33.33% no-repeat;
+  }
+  .menu-hero h1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0 24px;
+  }
+  .menu-title-en {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: var(--ink);
+  }
+  .menu-title-cn {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.1rem;
+    color: var(--cinnabar);
+    letter-spacing: 0.4em;
+  }
+  .menu-hero-sub {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--ink-muted);
+    font-size: 1.05rem;
+  }
+
+  /* Category nav */
+  .cat-nav-wrap {
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    background: rgba(247, 244, 237, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-nav {
+    display: flex;
+    gap: 36px;
+    overflow-x: auto;
+    padding: 18px 0;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .cat-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .cat-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--ink-muted);
+    transition: color 0.2s ease;
+  }
+  .cat-nav a:hover {
+    color: var(--cinnabar);
+  }
+  .cat-nav-en {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .cat-nav-cn {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 0.75rem;
+  }
+
+  /* Menu sections */
+  .menu-section {
+    padding: 72px 0;
+  }
+  .menu-section--alt {
+    background: var(--paper-warm);
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+  }
+  .menu-cat-head {
+    position: sticky;
+    top: 160px;
+    align-self: start;
+  }
+  .cat-index {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .menu-cat-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 8px;
+  }
+  .cat-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1rem;
+    color: var(--cinnabar);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .cat-note {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .menu-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+  .menu-item-main {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .menu-item-title {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .menu-item-title h3 {
+    font-size: 1.25rem;
+  }
+  .menu-item-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 0.9rem;
+    color: var(--cinnabar);
+  }
+  .menu-item-dots {
+    border-bottom: 1.5px dotted var(--border-gold);
+    min-width: 40px;
+  }
+  .menu-item-price {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .menu-item-desc {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    max-width: 640px;
+  }
+  .menu-item-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(191, 160, 101, 0.12);
+    color: var(--tea);
+  }
+  .tag--signature { background: rgba(185, 59, 50, 0.1); color: var(--cinnabar); }
+  .tag--steamed { background: rgba(125, 139, 105, 0.12); color: var(--bamboo); }
+  .tag--vegetarian, .tag--vegan { background: rgba(61, 107, 91, 0.1); color: var(--jade); }
+  .tag--spicy { background: rgba(185, 59, 50, 0.1); color: var(--cinnabar); }
+  .tag--premium { background: rgba(191, 160, 101, 0.18); color: var(--gold); }
+  .tag--gluten-free { background: rgba(31, 28, 24, 0.06); color: var(--ink-muted); }
+  .tag--high-protein { background: rgba(191, 160, 101, 0.12); color: var(--tea); }
+
+  /* Tea pairing */
+  .tea-pairing {
+    background: var(--paper);
+  }
+  .tea-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    background: var(--jade);
+    color: var(--paper);
+    padding: 56px;
+    border-radius: 2px;
+  }
+  .tea-copy h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin: 12px 0 16px;
+  }
+  .tea-copy p {
+    opacity: 0.85;
+    max-width: 460px;
+  }
+  .tea-list {
+    border-left: 1px solid rgba(247, 244, 237, 0.2);
+    padding-left: 48px;
+  }
+  .tea-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(247, 244, 237, 0.15);
+  }
+  .tea-row:last-child {
+    border-bottom: none;
+  }
+  .tea-cname {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.2rem;
+    margin-right: 16px;
+  }
+  .tea-price {
+    font-weight: 700;
+    color: var(--gold-soft);
+  }
+
+  @media (max-width: 900px) {
+    .menu-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .menu-cat-head {
+      position: static;
+      text-align: center;
+    }
+    .tea-panel {
+      grid-template-columns: 1fr;
+      padding: 40px;
+      text-align: center;
+    }
+    .tea-list {
+      border-left: none;
+      border-top: 1px solid rgba(247, 244, 237, 0.2);
+      padding-left: 0;
+      padding-top: 24px;
+    }
+  }
+</style>

@@ -1,0 +1,234 @@
+{
+  "categories": [
+    {
+      "name": "Steamed Dim Sum",
+      "items": [
+        {
+          "name": "Har Gow",
+          "cname": "虾饺",
+          "desc": "Crystal shrimp dumplings with bamboo shoots and ginger. Four pieces per basket, steamed to a delicate translucence.",
+          "price": "$9",
+          "calories": 180,
+          "tags": ["signature", "steamed"]
+        },
+        {
+          "name": "Siu Mai",
+          "cname": "烧卖",
+          "desc": "Open-top pork and shrimp dumplings crowned with crab roe. Juicy, savory, and best eaten in one bite.",
+          "price": "$8",
+          "calories": 210,
+          "tags": ["signature", "steamed"]
+        },
+        {
+          "name": "Char Siu Bao",
+          "cname": "叉烧包",
+          "desc": "Fluffy milk-bun pillows filled with sweet honey-glazed barbecue pork.",
+          "price": "$7",
+          "calories": 240,
+          "tags": ["steamed"]
+        },
+        {
+          "name": "Liu Sha Bao",
+          "cname": "流沙包",
+          "desc": "Golden salted-egg-yolk custard buns that flow like lava when torn open.",
+          "price": "$8",
+          "calories": 260,
+          "tags": ["signature", "steamed"]
+        },
+        {
+          "name": "Cheung Fun",
+          "cname": "肠粉",
+          "desc": "Silky rice noodle rolls filled with shrimp, doused in sweet soy sauce and sesame oil.",
+          "price": "$9",
+          "calories": 220,
+          "tags": ["steamed"]
+        }
+      ]
+    },
+    {
+      "name": "Fried & Baked",
+      "items": [
+        {
+          "name": "Spring Rolls",
+          "cname": "春卷",
+          "desc": "Crispy golden rolls of shredded cabbage, mushrooms, and glass noodles.",
+          "price": "$6",
+          "calories": 190,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Turnip Cake",
+          "cname": "萝卜糕",
+          "desc": "Pan-fried cubes of savory radish cake with Chinese sausage and dried shrimp.",
+          "price": "$7",
+          "calories": 230,
+          "tags": ["fried"]
+        },
+        {
+          "name": "Egg Tart",
+          "cname": "蛋挞",
+          "desc": "Flaky puff pastry cradling a wobbly, caramelized egg custard.",
+          "price": "$5",
+          "calories": 170,
+          "tags": ["baked"]
+        },
+        {
+          "name": "Char Siu Pastry",
+          "cname": "叉烧酥",
+          "desc": "Buttery baked parcels filled with caramelized barbecue pork.",
+          "price": "$6",
+          "calories": 220,
+          "tags": ["baked"]
+        }
+      ]
+    },
+    {
+      "name": "Rice & Noodles",
+      "items": [
+        {
+          "name": "Beef Chow Fun",
+          "cname": "干炒牛河",
+          "desc": "Wok-charred flat rice noodles with sliced beef, bean sprouts, and scallions. The mark of a good kitchen is in the wok hei.",
+          "price": "$16",
+          "calories": 540,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Wonton Noodle Soup",
+          "cname": "云吞面",
+          "desc": "Fine egg noodles in a clear dried-flounder broth with plump shrimp wontons.",
+          "price": "$14",
+          "calories": 420,
+          "tags": ["soup"]
+        },
+        {
+          "name": "Claypot Rice",
+          "cname": "煲仔饭",
+          "desc": "Crispy-bottomed rice with Chinese sausage, cured duck, and shiitake, finished with sweet soy.",
+          "price": "$18",
+          "calories": 620,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Century Egg Congee",
+          "cname": "皮蛋瘦肉粥",
+          "desc": "Silky rice porridge with lean pork, preserved egg, and ginger scallion oil.",
+          "price": "$12",
+          "calories": 310,
+          "tags": ["soup"]
+        }
+      ]
+    },
+    {
+      "name": "BBQ & Roasted Meats",
+      "items": [
+        {
+          "name": "Char Siu",
+          "cname": "叉烧",
+          "desc": "Honey-glazed barbecued pork with charred edges and a molten maltose lacquer.",
+          "price": "$19",
+          "calories": 380,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Roast Duck",
+          "cname": "烧鸭",
+          "desc": "Crisp-skinned duck with five-spice aroma, served with plum sauce.",
+          "price": "$22",
+          "calories": 460,
+          "tags": ["signature"]
+        },
+        {
+          "name": "Crispy Pork Belly",
+          "cname": "脆皮烧肉",
+          "desc": "Crackling pork belly with tender meat and a side of mustard.",
+          "price": "$20",
+          "calories": 520,
+          "tags": ["crispy"]
+        },
+        {
+          "name": "Poached Chicken",
+          "cname": "白切鸡",
+          "desc": "Silky free-range chicken poached in ginger-scallion broth, served cold with dipping oil.",
+          "price": "$18",
+          "calories": 290,
+          "tags": ["gluten-free"]
+        }
+      ]
+    },
+    {
+      "name": "Chef's Specials",
+      "items": [
+        {
+          "name": "Steamed Whole Fish",
+          "cname": "清蒸鱼",
+          "desc": "Daily catch steamed with ginger, scallion, and soy. Light, clean, and resolutely Cantonese.",
+          "price": "$38",
+          "calories": 340,
+          "tags": ["market price"]
+        },
+        {
+          "name": "Gai Lan with Oyster Sauce",
+          "cname": "蚝油芥兰",
+          "desc": "Blanched Chinese broccoli dressed in oyster sauce and garlic oil.",
+          "price": "$14",
+          "calories": 120,
+          "tags": ["vegetarian"]
+        },
+        {
+          "name": "Salt & Pepper Squid",
+          "cname": "椒盐鱿鱼",
+          "desc": "Crispy squid tossed with salt, white pepper, garlic, and dried chili.",
+          "price": "$17",
+          "calories": 330,
+          "tags": ["spicy"]
+        },
+        {
+          "name": "Lobster with Ginger & Scallion",
+          "cname": "姜葱龙虾",
+          "desc": "Whole lobster stir-fried with ginger, scallion, and Shaoxing wine.",
+          "price": "$58",
+          "calories": 420,
+          "tags": ["premium"]
+        }
+      ]
+    },
+    {
+      "name": "Tea & Drinks",
+      "items": [
+        {
+          "name": "Iron Goddess Oolong",
+          "cname": "铁观音",
+          "desc": "Floral, roasted Tieguanyin. The classic companion to dim sum.",
+          "price": "$6",
+          "calories": 0,
+          "tags": ["tea"]
+        },
+        {
+          "name": "Aged Pu-erh",
+          "cname": "普洱",
+          "desc": "Earthy, dark tea that cuts through the richness of roast meats.",
+          "price": "$7",
+          "calories": 0,
+          "tags": ["tea"]
+        },
+        {
+          "name": "Hong Kong Milk Tea",
+          "cname": "港式奶茶",
+          "desc": "Strong Ceylon and evaporated milk, pulled through a silk stocking.",
+          "price": "$5",
+          "calories": 120,
+          "tags": ["cold"]
+        },
+        {
+          "name": "Lemon Iced Tea",
+          "cname": "冻柠茶",
+          "desc": "Chilled black tea with fresh lemon slices — sweet, tart, and refreshing.",
+          "price": "$5",
+          "calories": 90,
+          "tags": ["cold"]
+        }
+      ]
+    }
+  ]
+}

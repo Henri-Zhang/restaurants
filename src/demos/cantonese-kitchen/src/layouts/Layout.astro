@@ -1,0 +1,182 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Lotus House — Cantonese Dim Sum & Kitchen",
+  description = "Refined dim sum, wok-fired classics, and the quiet ritual of yum cha. A Cantonese kitchen built for long family lunches.",
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper: #f7f4ed;
+    --paper-warm: #efe9dd;
+    --ink: #1f1c18;
+    --ink-muted: #6b6256;
+    --cinnabar: #b93b32;
+    --cinnabar-deep: #8f2a23;
+    --gold: #bfa065;
+    --gold-soft: #d9c89a;
+    --jade: #3d6b5b;
+    --jade-soft: #6f9686;
+    --bamboo: #7a8b69;
+    --tea: #8c6f4a;
+    --border: rgba(31, 28, 24, 0.1);
+    --border-gold: rgba(191, 160, 101, 0.45);
+    --shadow: rgba(31, 28, 24, 0.08);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: Georgia, "Noto Serif SC", "Songti SC", serif;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .section {
+    padding: 84px 0;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cinnabar);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 30px;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease,
+      box-shadow 0.15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn--cinnabar {
+    background: var(--cinnabar);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(185, 59, 50, 0.28);
+  }
+  .btn--cinnabar:hover {
+    background: var(--cinnabar-deep);
+  }
+  .btn--gold {
+    background: transparent;
+    color: var(--cinnabar);
+    border: 1.5px solid var(--gold);
+  }
+  .btn--gold:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .btn--ink {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn--ink:hover {
+    background: #3a342e;
+  }
+
+  /* Decorative Chinese seal */
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--cinnabar);
+    color: #fff;
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 1.1rem;
+    line-height: 1;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.18);
+  }
+
+  /* Lattice window motif */
+  .lattice {
+    position: relative;
+    border: 1px solid var(--border-gold);
+    background:
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 33.33% 1px no-repeat,
+      linear-gradient(var(--border-gold), var(--border-gold)) center / 1px 33.33% no-repeat,
+      linear-gradient(135deg, transparent 48%, var(--border-gold) 48%, var(--border-gold) 52%, transparent 52%),
+      linear-gradient(225deg, transparent 48%, var(--border-gold) 48%, var(--border-gold) 52%, transparent 52%);
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 56px 0;
+    }
+  }
+</style>
