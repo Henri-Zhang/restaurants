@@ -15,8 +15,16 @@ const base = import.meta.env.BASE_URL;
     <!-- Menu hero -->
     <section class="menu-hero">
       <div class="menu-hero-lattice" aria-hidden="true"></div>
+      <div class="menu-hero-photo" aria-hidden="true">
+        <img
+          src={`${base}imgs/3_converted.jpg`}
+          alt=""
+          class="menu-hero-photo-img"
+        />
+        <div class="menu-hero-photo-veil"></div>
+      </div>
       <div class="container">
-        <p class="eyebrow" style="text-align: center;">The Menu</p>
+        <p class="eyebrow menu-eyebrow">The Menu</p>
         <h1>
           <span class="menu-title-en">Dim Sum · Wok · Tea</span>
           <span class="menu-title-cn">点心 · 小炒 · 茗茶</span>
@@ -27,6 +35,34 @@ const base = import.meta.env.BASE_URL;
           passed around.
         </p>
       </div>
+    </section>
+
+    <!-- Visual strip: trolley of dim sum + roasted meats hanging in the window -->
+    <section class="menu-strip" aria-hidden="true">
+      <figure class="menu-strip-fig">
+        <img
+          src={`${base}imgs/2_converted.jpg`}
+          alt="Bamboo steamers of dim sum"
+          class="menu-strip-img"
+        />
+        <figcaption>Steamed to order, served from the cart.</figcaption>
+      </figure>
+      <figure class="menu-strip-fig">
+        <img
+          src={`${base}imgs/4.jpg`}
+          alt="Roast meats hanging in the window"
+          class="menu-strip-img"
+        />
+        <figcaption>Roasted over almond wood, carved to order.</figcaption>
+      </figure>
+      <figure class="menu-strip-fig">
+        <img
+          src={`${base}imgs/6_converted.jpg`}
+          alt="Traditional Chinese tea set"
+          class="menu-strip-img"
+        />
+        <figcaption>The pot arrives before the first basket.</figcaption>
+      </figure>
     </section>
 
     <!-- Category nav -->
@@ -128,6 +164,39 @@ const base = import.meta.env.BASE_URL;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
+  .menu-hero-photo {
+    position: absolute;
+    right: -120px;
+    top: 0;
+    bottom: 0;
+    width: 60%;
+    z-index: 0;
+  }
+  .menu-hero-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .menu-hero-photo-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--paper-warm) 0%,
+      var(--paper-warm) 35%,
+      rgba(239, 233, 221, 0.5) 60%,
+      rgba(239, 233, 221, 0.05) 100%
+    );
+  }
+  .menu-hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+  }
+  .menu-eyebrow {
+    text-align: left;
+  }
   .menu-hero-lattice {
     position: absolute;
     left: 50%;
@@ -209,6 +278,44 @@ const base = import.meta.env.BASE_URL;
   .cat-nav-cn {
     font-family: Georgia, "Noto Serif SC", serif;
     font-size: 0.75rem;
+  }
+
+  /* Visual strip: dim sum / roast / tea */
+  .menu-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .menu-strip-fig {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .menu-strip-fig + .menu-strip-fig {
+    border-left: 1px solid var(--border);
+  }
+  .menu-strip-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .menu-strip-fig:hover .menu-strip-img {
+    transform: scale(1.04);
+  }
+  .menu-strip-fig figcaption {
+    position: absolute;
+    left: 24px;
+    bottom: 20px;
+    color: var(--paper);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 12px rgba(31, 28, 24, 0.55);
+    max-width: 80%;
   }
 
   /* Menu sections */
@@ -380,6 +487,18 @@ const base = import.meta.env.BASE_URL;
     .menu-cat-head {
       position: static;
       text-align: center;
+    }
+    .menu-strip {
+      grid-template-columns: 1fr;
+    }
+    .menu-strip-fig + .menu-strip-fig {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+    .menu-strip-fig figcaption {
+      left: 20px;
+      bottom: 16px;
+      font-size: 0.85rem;
     }
     .tea-panel {
       grid-template-columns: 1fr;

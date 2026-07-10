@@ -60,6 +60,10 @@ const signatures = [
   <main>
     <!-- Hero -->
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src={`${base}imgs/5.jpg`} alt="" class="hero-bg-img" />
+        <div class="hero-bg-veil"></div>
+      </div>
       <div class="hero-lattice" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -101,7 +105,7 @@ const signatures = [
 
     <!-- The ritual of yum cha -->
     <section class="section ritual" id="ritual">
-      <div class="container">
+      <div class="container ritual-container">
         <div class="ritual-head">
           <p class="eyebrow">The Ritual</p>
           <h2>Yum cha is a state of mind.</h2>
@@ -118,11 +122,26 @@ const signatures = [
             </article>
           ))}
         </div>
+        <div class="ritual-photo" aria-hidden="true">
+          <img
+            src={`${base}imgs/3_converted.jpg`}
+            alt="Crystal shrimp dumplings"
+            class="ritual-photo-img"
+          />
+        </div>
       </div>
     </section>
 
     <!-- Dim sum trolley -->
     <section class="section trolley" id="trolley">
+      <div class="trolley-photo" aria-hidden="true">
+        <img
+          src={`${base}imgs/2_converted.jpg`}
+          alt="Bamboo steamers of dim sum"
+          class="trolley-photo-img"
+        />
+        <div class="trolley-photo-veil"></div>
+      </div>
       <div class="container trolley-head">
         <p class="eyebrow">From the Cart</p>
         <h2>Today’s dim sum.</h2>
@@ -147,6 +166,14 @@ const signatures = [
 
     <!-- Signatures -->
     <section class="section signatures" id="signatures">
+      <div class="signatures-photo" aria-hidden="true">
+        <img
+          src={`${base}imgs/4.jpg`}
+          alt="Roast duck hanging in the window"
+          class="signatures-photo-img"
+        />
+        <div class="signatures-photo-veil"></div>
+      </div>
       <div class="container">
         <div class="signatures-head">
           <p class="eyebrow">Chef’s Signatures</p>
@@ -163,6 +190,59 @@ const signatures = [
               <span class="signature-price">{dish.price}</span>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tea -->
+    <section class="section tea" id="tea">
+      <div class="container tea-grid">
+        <div class="tea-photo" aria-hidden="true">
+          <img
+            src={`${base}imgs/6_converted.jpg`}
+            alt="Traditional Chinese tea set with iron teapot"
+            class="tea-photo-img"
+          />
+        </div>
+        <div class="tea-copy">
+          <p class="eyebrow">The Tea</p>
+          <h2>First, the tea.</h2>
+          <p>
+            No meal at Lotus House begins without a pot of tea on the table.
+            The first cup clears the palate. The second invites the
+            conversation. By the third, you have been at the table for two
+            hours and you have not noticed.
+          </p>
+          <p>
+            Choose from Iron Goddess Oolong, aged Pu-erh, or Hong Kong milk
+            tea — each paired to what you order, never rushed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heritage: the sign that hangs over the door-->
+    <section class="section heritage" id="heritage">
+      <div class="container heritage-grid">
+        <div class="heritage-photo" aria-hidden="true">
+          <img
+            src={`${base}imgs/1.jpeg`}
+            alt="The Lotus House sign hanging above the entrance"
+            class="heritage-photo-img"
+          />
+          <div class="heritage-photo-veil"></div>
+        </div>
+        <div class="heritage-copy">
+          <p class="eyebrow">A Hong Kong Kitchen</p>
+          <h2>Four decades under one sign.</h2>
+          <p>
+            The red lantern and the gold letters have hung over the same
+            doorway since 1984. The recipes are the same. The dim sum is
+            still hand-folded each morning. We are still family-run.
+          </p>
+          <a href={`${base}story/`} class="btn btn--gold">
+            Read our story →
+          </a>
         </div>
       </div>
     </section>
@@ -221,10 +301,24 @@ const signatures = [
     align-items: center;
     padding: 64px 0;
     overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hero-bg-veil {
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse at 80% 20%, rgba(185, 59, 50, 0.08), transparent 40%),
-      radial-gradient(ellipse at 20% 90%, rgba(191, 160, 101, 0.1), transparent 40%),
-      var(--paper);
+      linear-gradient(115deg, var(--paper) 0%, var(--paper) 45%, rgba(247, 244, 237, 0.55) 60%, rgba(247, 244, 237, 0.15) 100%),
+      linear-gradient(0deg, rgba(247, 244, 237, 0.35), rgba(247, 244, 237, 0.35));
   }
   .hero-lattice {
     position: absolute;
@@ -238,9 +332,12 @@ const signatures = [
     background:
       linear-gradient(var(--border-gold), var(--border-gold)) center / 33.33% 1px no-repeat,
       linear-gradient(var(--border-gold), var(--border-gold)) center / 1px 33.33% no-repeat;
+    z-index: 1;
   }
 
   .hero-grid {
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 64px;
@@ -364,6 +461,29 @@ const signatures = [
     background: var(--paper-warm);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .ritual-container {
+    position: relative;
+    z-index: 1;
+  }
+  .ritual-photo {
+    position: absolute;
+    right: -60px;
+    bottom: -40px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid var(--paper);
+    box-shadow: 0 24px 60px rgba(31, 28, 24, 0.18);
+    z-index: 0;
+  }
+  .ritual-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .ritual-head {
     text-align: center;
@@ -420,6 +540,29 @@ const signatures = [
   .trolley {
     background: var(--paper);
     overflow: hidden;
+    position: relative;
+  }
+  .trolley-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .trolley-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .trolley-photo-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(247, 244, 237, 0.92) 0%, rgba(247, 244, 237, 0.82) 100%);
+  }
+  .trolley-head,
+  .trolley-track-wrap {
+    position: relative;
+    z-index: 1;
   }
   .trolley-head {
     text-align: center;
@@ -499,6 +642,39 @@ const signatures = [
   /* Signatures */
   .signatures {
     background: var(--paper-warm);
+    position: relative;
+    overflow: hidden;
+  }
+  .signatures-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .signatures-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .signatures-photo-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      var(--paper-warm) 0%,
+      var(--paper-warm) 35%,
+      rgba(239, 233, 221, 0.6) 50%,
+      rgba(239, 233, 221, 0.05) 100%
+    );
+  }
+  .signatures .container,
+  .signatures-head {
+    position: relative;
+    z-index: 1;
   }
   .signatures-head {
     text-align: center;
@@ -511,6 +687,8 @@ const signatures = [
   .signatures-list {
     max-width: 840px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
   .signature-row {
     display: grid;
@@ -539,6 +717,98 @@ const signatures = [
     font-size: 1.3rem;
     color: var(--gold);
     font-weight: 600;
+  }
+
+  /* Tea */
+  .tea {
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .tea-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .tea-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(31, 28, 24, 0.18);
+    border: 1px solid var(--border);
+  }
+  .tea-photo::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--border-gold);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .tea-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tea-copy h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin: 12px 0 20px;
+  }
+  .tea-copy p {
+    color: var(--ink-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* Heritage: the sign over the door*/
+  .heritage {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .heritage-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .heritage-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border-gold);
+    overflow: hidden;
+  }
+  .heritage-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .heritage-photo-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(31, 28, 24, 0.45) 0%,
+      rgba(31, 28, 24, 0.25) 100%
+    );
+  }
+  .heritage-copy {
+    padding: 24px 0;
+  }
+  .heritage-copy .eyebrow {
+    color: var(--gold-soft);
+  }
+  .heritage-copy h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 12px 0 20px;
+  }
+  .heritage-copy p {
+    color: rgba(247, 244, 237, 0.78);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
   }
 
   /* Booking */
@@ -638,10 +908,40 @@ const signatures = [
     .ritual-grid {
       grid-template-columns: 1fr;
     }
+    .ritual-photo {
+      position: static;
+      width: 240px;
+      height: 240px;
+      margin: 32px auto 0;
+      right: auto;
+      bottom: auto;
+    }
     .signature-row {
       grid-template-columns: 1fr;
       gap: 12px;
       text-align: center;
+    }
+    .signatures-photo {
+      position: absolute;
+      width: 100%;
+      height: 220px;
+      top: 0;
+    }
+    .signatures-photo-veil {
+      background: linear-gradient(
+        180deg,
+        var(--paper-warm) 0%,
+        rgba(239, 233, 221, 0.8) 60%,
+        rgba(239, 233, 221, 0.4) 100%
+      );
+    }
+    .tea-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .heritage-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
     }
     .book-panel {
       grid-template-columns: 1fr;
